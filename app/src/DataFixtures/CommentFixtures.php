@@ -3,36 +3,17 @@
 namespace App\DataFixtures;
 
 use App\Entity\Comment;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
-use Faker\Generator;
 
 /**
  * Class CommentFixtures.
  */
-class CommentFixtures extends Fixture
+class CommentFixtures extends AbstractBaseFixtures
 {
     /**
-     * Faker.
-     *
-     * @var Generator
+     * Load data.
      */
-    protected Generator $faker;
-
-    /**
-     * Persistence object manager.
-     *
-     * @var ObjectManager
-     */
-    protected ObjectManager $manager;
-
-    /**
-     * Load.
-     *
-     * @param ObjectManager $manager Persistence object manager.
-     */
-    public function load(ObjectManager $manager): void
+    public function loadData(): void
     {
         $this->faker = Factory::create();
         for ($i = 0; $i < 10; ++$i) {
@@ -40,8 +21,8 @@ class CommentFixtures extends Fixture
             $comment->setGamesId($this->faker->randomDigit());
             $comment->setUsersId($this->faker->randomDigit());
             $comment->setDescription($this->faker->sentence);
-            $manager->persist($comment);
+            $this->manager->persist($comment);
         }
-        $manager->flush();
+        $this->manager->flush();
     }
 }
