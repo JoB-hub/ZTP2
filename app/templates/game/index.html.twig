@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.game_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.game_list'|trans }}</h1>
+    {% if games is defined and games|length %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'label.id'|trans }}</th>
+                <th>{{ 'label.picture'|trans }}</th>
+                <th>{{ 'label.title'|trans }}</th>
+                <th>{{ 'label.description'|trans }}</th>
+                <th>{{ 'label.genre'|trans }}</th>
+                <th>{{ 'label.studio'|trans }}</th>
+                <th>{{ 'label.createdAt'|trans }}</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for game in games %}
+                <tr>
+                    <td>{{ game.id }}</td>
+                    <td>{{ game.pictureId }}</td>
+                    <td>{{ game.title }}</td>
+                    <td>{{ game.description }}</td>
+                    <td>{{ game.genreId }}</td>
+                    <td>{{ game.studioId }}</td>
+                    <td>{{ game.createdAt|date('Y/m/d') }}</td>
+
+                    <td>
+                        <a href="{{ url('game_show', {id: game.id}) }}" title="{{ 'action.view'|trans }}">
+                            {{ 'action.view'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

@@ -16,9 +16,9 @@ class PictureFixtures extends AbstractBaseFixtures
     public function loadData(): void
     {
         $this->faker = Factory::create();
-        for ($i = 0; $i < 10; ++$i) {
+        for ($i = 0; $i < 3; ++$i) {
             $picture = new Picture();
-            $picture->setFilename($this->faker->imageUrl(640, 480, 'cars'));
+            $picture->setFilename($this->faker->unique()->word);
             $this->manager->persist($picture);
         }
         $this->manager->flush();

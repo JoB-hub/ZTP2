@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.comment_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.comment_list'|trans }}</h1>
+    {% if comments is defined and comments|length %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'label.id'|trans }}</th>
+                <th>{{ 'label.user'|trans }}</th>
+                <th>{{ 'label.description'|trans }}</th>
+                <th>{{ 'label.game'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for comment in comments %}
+                <tr>
+                    <td>{{ comment.id }}</td>
+                    <td>{{ comment.usersId }}</td>
+                    <td>{{ comment.description }}</td>
+                    <td>{{ comment.gamesId }}</td>
+                    <td>
+                        <a href="{{ url('comment_show', {id: comment.id}) }}" title="{{ 'action.view'|trans }}">
+                            {{ 'action.view'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

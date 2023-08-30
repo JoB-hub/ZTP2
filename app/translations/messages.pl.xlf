@@ -38,6 +38,82 @@
                 <source>title.record_view</source>
                 <target>Wyświetl #%id%</target>
             </trans-unit>
+            <trans-unit id="0">
+                <source>title.genre_list</source>
+                <target>Lista gatunków</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>label.name</source>
+                <target>Nazwa</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>label.description</source>
+                <target>Opis</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>action.view</source>
+                <target>Wyświetl</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>label.user</source>
+                <target>Użytkownik</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>label.game</source>
+                <target>Gra</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>title.comment_list</source>
+                <target>Lista komentarzy</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>title.genre_details</source>
+                <target>Szczegóły gatunku</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>action.back_to_list</source>
+                <target>Powróć do listy</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>title.comment_details</source>
+                <target>Szczegóły komentarza</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>title.game_list</source>
+                <target>Lista gier</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>label.picture</source>
+                <target>Obrazek</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>label.genre</source>
+                <target>Gatunek</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>label.studio</source>
+                <target>Studio</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>label.createdAt</source>
+                <target>Data stworzenia</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>title.game_details</source>
+                <target>Szczegóły gry</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>title.picture_list</source>
+                <target>Lista obrazów</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>label.filename</source>
+                <target>Nazwa pliku</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>title.picture_details</source>
+                <target>Szczegóły obrazu</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

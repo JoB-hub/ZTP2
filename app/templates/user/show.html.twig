@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.genre_details'|trans({'%id%': genre.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.genre_details'|trans({'%id%': genre.id|default('')}) }}</h1>
+    {% if genre is defined and genre|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ genre.id }}</dd>
+            <dt>{{ 'label.name'|trans }}</dt>
+            <dd>{{  genre.name }}</dd>
+            <dt>{{ 'label.description'|trans }}</dt>
+            <dd>{{  genre.description }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('genre_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

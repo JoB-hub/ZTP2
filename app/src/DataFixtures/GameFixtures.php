@@ -24,6 +24,7 @@ class GameFixtures extends AbstractBaseFixtures
             $game->setCreatedAt(
                 DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );
+            $game->setPictureId($this->faker->randomDigit());
             $game->setGenreId($this->faker->randomDigit());
             $game->setStudioId($this->faker->randomDigit());
             $this->manager->persist($game);

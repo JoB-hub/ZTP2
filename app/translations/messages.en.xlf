@@ -38,6 +38,82 @@
                 <source>title.record_view</source>
                 <target>Record view #%id%</target>
             </trans-unit>
+            <trans-unit id="0">
+                <source>title.genre_list</source>
+                <target>Genre list</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>label.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>label.description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>action.view</source>
+                <target>View</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>label.user</source>
+                <target>User</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>label.game</source>
+                <target>Game</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>title.comment_list</source>
+                <target>Comment list</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>title.genre_details</source>
+                <target>Genre details</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>action.back_to_list</source>
+                <target>Back to list</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>title.comment_details</source>
+                <target>Comment details</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>title.game_list</source>
+                <target>Game list</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>label.picture</source>
+                <target>Picture</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>label.genre</source>
+                <target>Genre</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>label.studio</source>
+                <target>Studio</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>label.createdAt</source>
+                <target>Created at</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>title.game_details</source>
+                <target>Game details</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>title.picture_list</source>
+                <target>Image list</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>label.filename</source>
+                <target>Filename</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>title.picture_details</source>
+                <target>Picture details</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
