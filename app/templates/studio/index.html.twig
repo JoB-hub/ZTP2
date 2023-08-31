@@ -1,28 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.genre_list'|trans }}
+    {{ 'title.studio_list'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.genre_list'|trans }}</h1>
-    {% if genres is defined and genres|length %}
+    <h1>{{ 'title.studio_list'|trans }}</h1>
+    {% if studios is defined and studios|length %}
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>{{ 'label.id'|trans }}</th>
                 <th>{{ 'label.name'|trans }}</th>
-                <th>{{ 'label.description'|trans }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
-            {% for genre in genres %}
+            {% for studio in studios %}
                 <tr>
-                    <td>{{ genre.id }}</td>
-                    <td>{{ genre.name }}</td>
-                    <td>{{ genre.description }}</td>
+                    <td>{{ studio.id }}</td>
+                    <td>{{ studio.name }}</td>
                     <td>
-                        <a href="{{ url('genre_show', {id: genre.id}) }}" title="{{ 'action.view'|trans }}">
+                        <a href="{{ url('studio_show', {id: studio.id}) }}" title="{{ 'action.view'|trans }}">
                             {{ 'action.view'|trans }}
                         </a>
                     </td>

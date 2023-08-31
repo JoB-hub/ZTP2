@@ -6,13 +6,11 @@
 
 {% block body %}
     <h1>{{ 'title.picture_details'|trans({'%id%': picture.id|default('')}) }}</h1>
-    <img src="https://picsum.photos/seed/{{ picture.filename }}/200/300">
+    <img src="https://picsum.photos/seed/{{ picture.filename }}/200/300" alt="Image depicting XYZ">
     {% if picture is defined and picture|length %}
         <dl class="dl-horizontal">
             <dt>{{ 'label.id'|trans }}</dt>
             <dd>{{ picture.id }}</dd>
-{#            <dt>{{ 'label.filename'|trans }}</dt>#}
-{#            <dd>{{  picture.filename }}</dd>#}
         </dl>
         <p>
             <a href="{{ url('picture_index') }}" title="{{ 'action.back_to_list'|trans }}">
