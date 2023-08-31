@@ -18,8 +18,8 @@ class CommentFixtures extends AbstractBaseFixtures
         $this->faker = Factory::create();
         for ($i = 0; $i < 10; ++$i) {
             $comment = new Comment();
-            $comment->setGamesId($this->faker->randomDigit());
-            $comment->setUsersId($this->faker->randomDigit());
+            $comment->setGameId($this->faker->randomDigit());
+            $comment->setUserId($this->faker->randomDigit());
             $comment->setDescription($this->faker->sentence);
             $this->manager->persist($comment);
         }

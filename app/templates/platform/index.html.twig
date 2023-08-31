@@ -6,29 +6,39 @@
 
 {% block body %}
     <h1>{{ 'title.platform_list'|trans }}</h1>
-    {% if platforms is defined and platforms|length %}
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ 'label.id'|trans }}</th>
-                <th>{{ 'label.name'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'platform.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.name'|trans, 'platform.name') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
-            {% for platform in platforms %}
+            {% for platform in pagination.items %}
                 <tr>
                     <td>{{ platform.id }}</td>
                     <td>{{ platform.name }}</td>
                     <td>
-                        <a href="{{ url('platform_show', {id: platform.id}) }}" title="{{ 'action.view'|trans }}">
-                            {{ 'action.view'|trans }}
+                        <a href="{{ url('platform_show', {id: platform.id}) }}" title="{{ 'action.show'|trans }}">
+                            {{ 'action.show'|trans }}
                         </a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
     {% else %}
         <p>
             {{ 'message.empty_list'|trans }}

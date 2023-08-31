@@ -146,6 +146,10 @@
                 <source>title.user_details</source>
                 <target>messages</target>
             </trans-unit>
+            <trans-unit id="27">
+                <source>action.show</source>
+                <target>Show</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

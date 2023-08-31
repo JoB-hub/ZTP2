@@ -18,10 +18,10 @@ class Comment
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $users_id = null;
+    private ?int $user_id = null;
 
     #[ORM\Column]
-    private ?int $games_id = null;
+    private ?int $game_id = null;
 
     public function getId(): ?int
     {
@@ -38,23 +38,23 @@ class Comment
         $this->description = $description;
     }
 
-    public function getUsersId(): ?int
+    public function getUserId(): ?int
     {
-        return $this->users_id;
+        return $this->user_id;
     }
 
-    public function setUsersId(int $users_id): void
+    public function setUserId(int $user_id): void
     {
-        $this->users_id = $users_id;
+        $this->user_id = $user_id;
     }
 
-    public function getGamesId(): ?int
+    public function getGameId(): ?int
     {
-        return $this->games_id;
+        return $this->game_id;
     }
 
-    public function setGamesId(int $games_id): void
+    public function setGameId(int $game_id): void
     {
-        $this->games_id = $games_id;
+        $this->game_id = $game_id;
     }
 }

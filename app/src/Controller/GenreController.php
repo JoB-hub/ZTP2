@@ -7,7 +7,9 @@ namespace App\Controller;
 
 use App\Entity\Genre;
 use App\Repository\GenreRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,22 +22,22 @@ class GenreController extends AbstractController
     /**
      * Index action.
      *
-     * @param GenreRepository $genreRepository Genre repository
+     * @param Request            $request        HTTP Request
+     * @param GenreRepository     $genreRepository Genre repository
+     * @param PaginatorInterface $paginator      Paginator
      *
      * @return Response HTTP response
      */
-    #[Route(
-        name: 'genre_index',
-        methods: 'GET'
-    )]
-    public function index(GenreRepository $genreRepository): Response
+    #[Route(name: 'genre_index', methods: 'GET')]
+    public function index(Request $request, GenreRepository $genreRepository, PaginatorInterface $paginator): Response
     {
-        $genres = $genreRepository->findAll();
-
-        return $this->render(
-            'genre/index.html.twig',
-            ['genres' => $genres]
+        $pagination = $paginator->paginate(
+            $genreRepository->queryAll(),
+            $request->query->getInt('page', 1),
+            GenreRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+
+        return $this->render('genre/index.html.twig', ['pagination' => $pagination]);
     }
 
     /**

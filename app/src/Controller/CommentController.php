@@ -7,7 +7,9 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Repository\CommentRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,22 +22,22 @@ class CommentController extends AbstractController
     /**
      * Index action.
      *
-     * @param CommentRepository $commentRepository Comment repository
+     * @param Request            $request        HTTP Request
+     * @param CommentRepository     $commentRepository Comment repository
+     * @param PaginatorInterface $paginator      Paginator
      *
      * @return Response HTTP response
      */
-    #[Route(
-        name: 'comment_index',
-        methods: 'GET'
-    )]
-    public function index(CommentRepository $commentRepository): Response
+    #[Route(name: 'comment_index', methods: 'GET')]
+    public function index(Request $request, CommentRepository $commentRepository, PaginatorInterface $paginator): Response
     {
-        $comments = $commentRepository->findAll();
-
-        return $this->render(
-            'comment/index.html.twig',
-            ['comments' => $comments]
+        $pagination = $paginator->paginate(
+            $commentRepository->queryAll(),
+            $request->query->getInt('page', 1),
+            CommentRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+
+        return $this->render('comment/index.html.twig', ['pagination' => $pagination]);
     }
 
     /**

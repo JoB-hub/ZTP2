@@ -7,7 +7,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,22 +22,22 @@ class UserController extends AbstractController
     /**
      * Index action.
      *
-     * @param UserRepository $userRepository User repository
+     * @param Request            $request        HTTP Request
+     * @param UserRepository     $userRepository User repository
+     * @param PaginatorInterface $paginator      Paginator
      *
      * @return Response HTTP response
      */
-    #[Route(
-        name: 'user_index',
-        methods: 'GET'
-    )]
-    public function index(UserRepository $userRepository): Response
+    #[Route(name: 'user_index', methods: 'GET')]
+    public function index(Request $request, UserRepository $userRepository, PaginatorInterface $paginator): Response
     {
-        $users = $userRepository->findAll();
-
-        return $this->render(
-            'user/index.html.twig',
-            ['users' => $users]
+        $pagination = $paginator->paginate(
+            $userRepository->queryAll(),
+            $request->query->getInt('page', 1),
+            UserRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+
+        return $this->render('user/index.html.twig', ['pagination' => $pagination]);
     }
 
     /**
