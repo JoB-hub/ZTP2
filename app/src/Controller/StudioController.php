@@ -22,9 +22,9 @@ class StudioController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request            $request        HTTP Request
-     * @param StudioRepository     $studioRepository Studio repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param Request            $request          HTTP Request
+     * @param StudioRepository   $studioRepository Studio repository
+     * @param PaginatorInterface $paginator        Paginator
      *
      * @return Response HTTP response
      */

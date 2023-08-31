@@ -23,6 +23,9 @@ class User
     #[ORM\Column]
     private array $role = [];
 
+    #[ORM\Column(length: 45)]
+    private ?string $nickname = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -56,5 +59,15 @@ class User
     public function setRole(array $role): void
     {
         $this->role = $role;
+    }
+
+    public function getNickname(): ?string
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname(string $nickname): void
+    {
+        $this->nickname = $nickname;
     }
 }

@@ -22,9 +22,9 @@ class PlatformController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request            $request        HTTP Request
-     * @param PlatformRepository     $platformRepository Platform repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param Request            $request            HTTP Request
+     * @param PlatformRepository $platformRepository Platform repository
+     * @param PaginatorInterface $paginator          Paginator
      *
      * @return Response HTTP response
      */

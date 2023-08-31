@@ -150,6 +150,14 @@
                 <source>action.show</source>
                 <target>Wyświetl</target>
             </trans-unit>
+            <trans-unit id="28">
+                <source>label.updatedAt</source>
+                <target>Data aktualizacji</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>label.nickname</source>
+                <target>Nazwa użytkownika</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

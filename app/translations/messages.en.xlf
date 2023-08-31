@@ -150,6 +150,14 @@
                 <source>action.show</source>
                 <target>Show</target>
             </trans-unit>
+            <trans-unit id="28">
+                <source>label.updatedAt</source>
+                <target>Updated at</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>label.nickname</source>
+                <target>Nickname</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

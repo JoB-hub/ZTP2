@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Comment;
+use DateTimeImmutable;
 use Faker\Factory;
 
 /**
@@ -20,6 +21,12 @@ class CommentFixtures extends AbstractBaseFixtures
             $comment = new Comment();
             $comment->setGameId($this->faker->randomDigit());
             $comment->setUserId($this->faker->randomDigit());
+            $comment->setCreatedAt(
+                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
+            );
+            $comment->setUpdatedAt(
+                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
+            );
             $comment->setDescription($this->faker->sentence);
             $this->manager->persist($comment);
         }

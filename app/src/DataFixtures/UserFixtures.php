@@ -19,6 +19,7 @@ class UserFixtures extends AbstractBaseFixtures
         for ($i = 0; $i < 10; ++$i) {
             $user = new User();
             $user->setEmail($this->faker->safeEmail);
+            $user->setNickname($this->faker->userName);
             $user->setPassword($this->faker->password);
             $this->manager->persist($user);
         }

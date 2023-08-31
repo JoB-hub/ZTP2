@@ -22,9 +22,9 @@ class CommentController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request            $request        HTTP Request
-     * @param CommentRepository     $commentRepository Comment repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param Request            $request           HTTP Request
+     * @param CommentRepository  $commentRepository Comment repository
+     * @param PaginatorInterface $paginator         Paginator
      *
      * @return Response HTTP response
      */

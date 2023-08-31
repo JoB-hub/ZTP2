@@ -16,6 +16,10 @@
             <dd>{{  comment.gameId }}</dd>
             <dt>{{ 'label.description'|trans }}</dt>
             <dd>{{  comment.description }}</dd>
+            <dt>{{ 'label.createdAt'|trans }}</dt>
+            <dd>{{  comment.createdAt|format_date('long') }}</dd>
+            <dt>{{ 'label.updatedAt'|trans }}</dt>
+            <dd>{{  comment.updatedAt|format_date('long') }}</dd>
         </dl>
         <p>
             <a href="{{ url('comment_index') }}" title="{{ 'action.back_to_list'|trans }}">
