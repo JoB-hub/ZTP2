@@ -15,13 +15,12 @@ class GenreFixtures extends AbstractBaseFixtures
      */
     public function loadData(): void
     {
-        $this->faker = Factory::create();
-        for ($i = 0; $i < 10; ++$i) {
+        $this->createMany(5, 'genres', function ($i) {
             $genre = new Genre();
             $genre->setName($this->faker->word);
             $genre->setDescription($this->faker->sentence);
-            $this->manager->persist($genre);
-        }
+            return $genre;
+        });
         $this->manager->flush();
     }
 }

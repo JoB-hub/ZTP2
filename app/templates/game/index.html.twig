@@ -18,8 +18,8 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'game.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'game.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'game.description') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.genre'|trans, 'game.genre_id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.studio'|trans, 'game.studio_id') }}</th>
+                <th>{{ 'label.genre'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.createdAt'|trans, 'game.createdAT') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -29,8 +29,8 @@
                     <td>{{ game.id }}</td>
                     <td>{{ game.title }}</td>
                     <td>{{ game.description }}</td>
-                    <td>{{ game.getGenreId }}</td>
-                    <td>{{ game.getStudioId }}</td>
+                    <td>{{ game.genre.name }}</td>
+                    <td>{{ game.createdAt|format_date('long') }}</td>
                     <td>
                         <a href="{{ url('game_show', {id: game.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}

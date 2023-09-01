@@ -16,8 +16,6 @@
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'comment.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.game'|trans, 'comment.game_id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.user'|trans, 'comment.user_id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'comment.description') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.createdAt'|trans, 'comment.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.updatedAt'|trans, 'comment.updatedAt') }}</th>
@@ -28,8 +26,6 @@
             {% for comment in pagination.items %}
                 <tr>
                     <td>{{ comment.id }}</td>
-                    <td>{{ comment.gameId }}</td>
-                    <td>{{ comment.userId }}</td>
                     <td>{{ comment.description }}</td>
                     <td>{{ comment.createdAt|format_date('long') }}</td>
                     <td>{{ comment.updatedAt|format_date('long') }}</td>>

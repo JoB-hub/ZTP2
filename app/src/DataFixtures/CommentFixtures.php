@@ -19,8 +19,6 @@ class CommentFixtures extends AbstractBaseFixtures
         $this->faker = Factory::create();
         for ($i = 0; $i < 10; ++$i) {
             $comment = new Comment();
-            $comment->setGameId($this->faker->randomDigit());
-            $comment->setUserId($this->faker->randomDigit());
             $comment->setCreatedAt(
                 DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );

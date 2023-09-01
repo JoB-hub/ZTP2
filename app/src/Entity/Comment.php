@@ -18,12 +18,6 @@ class Comment
     #[ORM\Column(length: 1000, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?int $user_id = null;
-
-    #[ORM\Column]
-    private ?int $game_id = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
@@ -43,26 +37,6 @@ class Comment
     public function setDescription(?string $description): void
     {
         $this->description = $description;
-    }
-
-    public function getUserId(): ?int
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId(int $user_id): void
-    {
-        $this->user_id = $user_id;
-    }
-
-    public function getGameId(): ?int
-    {
-        return $this->game_id;
-    }
-
-    public function setGameId(int $game_id): void
-    {
-        $this->game_id = $game_id;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface

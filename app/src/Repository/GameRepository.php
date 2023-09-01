@@ -46,6 +46,11 @@ class GameRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
+            ->select(
+                'partial game.{id, title, description, createdAt}',
+                'partial genre.{id, name}'
+            )
+            ->join('game.genre', 'genre')
             ->orderBy('game.title', 'DESC');
     }
 

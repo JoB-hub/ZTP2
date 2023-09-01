@@ -14,12 +14,8 @@
             <dd>{{  game.title }}</dd>
             <dt>{{ 'label.description'|trans }}</dt>
             <dd>{{  game.description }}</dd>
-            <dt>{{ 'label.picture'|trans }}</dt>
-            <dd>{{ game.pictureId }}</dd>
             <dt>{{ 'label.genre'|trans }}</dt>
-            <dd>{{ game.genreId }}</dd>
-            <dt>{{ 'label.studio'|trans }}</dt>
-            <dd>{{ game.studioId }}</dd>
+            <dd>{{  game.genre.name }}</dd>
             <dt>{{ 'label.createdAt'|trans }}</dt>
             <dd>{{ game.createdAt|date('Y/m/d') }}</dd>
         </dl>

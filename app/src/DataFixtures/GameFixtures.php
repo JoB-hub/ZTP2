@@ -3,31 +3,46 @@
 namespace App\DataFixtures;
 
 use App\Entity\Game;
-use Faker\Factory;
+use DateTimeImmutable;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
  * Class GameFixtures.
  */
-class GameFixtures extends AbstractBaseFixtures
+class GameFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
      * Load data.
+     *
+     * @psalm-suppress PossiblyNullPropertyFetch
+     * @psalm-suppress PossiblyNullReference
+     * @psalm-suppress UnusedClosureParam
      */
     public function loadData(): void
     {
-        $this->faker = Factory::create();
-        for ($i = 0; $i < 10; ++$i) {
+        $this->createMany(10, 'game', function ($i) {
             $game = new Game();
-            $game->setTitle($this->faker->words(2, true));
+            $game->setTitle($this->faker->word);
             $game->setDescription($this->faker->sentence);
             $game->setCreatedAt(
-                \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
+                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );
-            $game->setPictureId($this->faker->randomDigit());
-            $game->setGenreId($this->faker->randomDigit());
-            $game->setStudioId($this->faker->randomDigit());
-            $this->manager->persist($game);
-        }
+            $game->setGenre($this->getRandomReference('genres'));
+            return $game;
+        });
         $this->manager->flush();
+    }
+
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on.
+     *
+     * @return string[] of dependencies
+     *
+     * @psalm-return array{0: GenreFixtures::class}
+     */
+    public function getDependencies(): array
+    {
+        return [GenreFixtures::class];
     }
 }

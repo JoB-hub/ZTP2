@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\GameRepository;
+use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,19 +23,16 @@ class Game
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $created_at = null;
+    private ?DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $users_id = null;
-
-    #[ORM\Column]
-    private ?int $genre_id = null;
-
-    #[ORM\Column]
-    private ?int $studio_id = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $picture_id = null;
+    /**
+     * Genre.
+     *
+     * @var Genre|null
+     */
+    #[ORM\ManyToOne(targetEntity: Genre::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Genre $genre = null;
 
     public function getId(): ?int
     {
@@ -61,53 +59,23 @@ class Game
         $this->description = $description;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): void
+    public function setCreatedAt(DateTimeInterface $createdAt): void
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
     }
 
-    public function getUsersId(): ?int
+    public function getGenre(): ?Genre
     {
-        return $this->users_id;
+        return $this->genre;
     }
 
-    public function setUsersId(?int $users_id): void
+    public function setGenre(?Genre $genre): void
     {
-        $this->users_id = $users_id;
-    }
-
-    public function getGenreId(): ?int
-    {
-        return $this->genre_id;
-    }
-
-    public function setGenreId(int $genre_id): void
-    {
-        $this->genre_id = $genre_id;
-    }
-
-    public function getStudioId(): ?int
-    {
-        return $this->studio_id;
-    }
-
-    public function setStudioId(int $studio_id): void
-    {
-        $this->studio_id = $studio_id;
-    }
-
-    public function getPictureId(): ?int
-    {
-        return $this->picture_id;
-    }
-
-    public function setPictureId(?int $picture_id): void
-    {
-        $this->picture_id = $picture_id;
+        $this->genre = $genre;
     }
 }
