@@ -158,6 +158,30 @@
                 <source>label.nickname</source>
                 <target>Nazwa użytkownika</target>
             </trans-unit>
+            <trans-unit id="30">
+                <source>title.genre_create</source>
+                <target>Stwórz gatunek</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>action.save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>message.created_successfully</source>
+                <target>Utworzono pomyślnie!</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>title.genre_edit</source>
+                <target>messages</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>message.deleted_successfully</source>
+                <target>messages</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>title.genre_delete</source>
+                <target>messages</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

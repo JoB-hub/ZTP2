@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Genre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -40,6 +42,17 @@ class GenreRepository extends ServiceEntityRepository
     }
 
     /**
+     * Save entity.
+     *
+     * @param Genre $genre Genre entity
+     */
+    public function save(Genre $genre): void
+    {
+        $this->_em->persist($genre);
+        $this->_em->flush();
+    }
+
+    /**
      * Query all records.
      *
      * @return QueryBuilder Query builder
@@ -60,6 +73,17 @@ class GenreRepository extends ServiceEntityRepository
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
         return $queryBuilder ?? $this->createQueryBuilder('genre');
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Genre $genre Genre entity
+     */
+    public function delete(Genre $genre): void
+    {
+        $this->_em->remove($genre);
+        $this->_em->flush();
     }
 
     //    /**
