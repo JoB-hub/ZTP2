@@ -4,8 +4,11 @@ namespace App\Entity;
 
 use App\Repository\GameRepository;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GameRepository::class)]
 #[ORM\Table(name: 'games')]
@@ -33,6 +36,44 @@ class Game
     #[ORM\ManyToOne(targetEntity: Genre::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Genre $genre = null;
+
+    /**
+     * Studio.
+     *
+     * @var Studio|null
+     */
+    #[ORM\ManyToOne(targetEntity: Studio::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Studio $studio = null;
+
+    /**
+     * Tags.
+     *
+     * @var ArrayCollection<int, Picture>
+     */
+    #[Assert\Valid]
+    #[ORM\ManyToMany(targetEntity: Picture::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
+    #[ORM\JoinTable(name: 'games_pictures')]
+    private Collection $pictures;
+
+    /**
+     * Platforms.
+     *
+     * @var ArrayCollection<int, Platform>
+     */
+    #[Assert\Valid]
+    #[ORM\ManyToMany(targetEntity: Platform::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
+    #[ORM\JoinTable(name: 'games_platforms')]
+    private Collection $platforms;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->pictures = new ArrayCollection();
+        $this->platforms = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -77,5 +118,83 @@ class Game
     public function setGenre(?Genre $genre): void
     {
         $this->genre = $genre;
+    }
+
+    public function getStudio(): ?Studio
+    {
+        return $this->studio;
+    }
+
+    public function setStudio(?Studio $studio): void
+    {
+        $this->studio = $studio;
+    }
+
+    /**
+     * Getter for pictures.
+     *
+     * @return Collection<int, Picture> Pictures collection
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * Add picture.
+     *
+     * @param Picture $picture Picture entity
+     */
+    public function addPicture(Picture $picture): void
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures->add($picture);
+        }
+    }
+
+    /**
+     * Remove picture.
+     *
+     * @param Picture $picture Picture entity
+     */
+    public function removePicture(Picture $picture): void
+    {
+        $this->pictures->removeElement($picture);
+    }
+
+    /**
+     * Getter for platforms.
+     *
+     * @return Collection<int, Platform> Platforms collection
+     */
+    public function getPlatforms(): Collection
+    {
+        return $this->platforms;
+    }
+
+    /**
+     * Add platform.
+     *
+     * @param Platform $platform Platform entity
+     */
+    public function addPlatform(Platform $platform): static
+    {
+        if (!$this->platforms->contains($platform)) {
+            $this->platforms->add($platform);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove platform.
+     *
+     * @param Platform $platform Tag entity
+     */
+    public function removePlatform(Platform $platform): static
+    {
+        $this->platforms->removeElement($platform);
+
+        return $this;
     }
 }

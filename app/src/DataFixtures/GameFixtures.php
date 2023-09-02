@@ -20,7 +20,10 @@ class GameFixtures extends AbstractBaseFixtures implements DependentFixtureInter
      */
     public function loadData(): void
     {
-        $this->createMany(10, 'game', function ($i) {
+        if (null === $this->manager || null === $this->faker) {
+            return;
+        }
+        $this->createMany(10, 'games', function ($i) {
             $game = new Game();
             $game->setTitle($this->faker->word);
             $game->setDescription($this->faker->sentence);
@@ -28,6 +31,7 @@ class GameFixtures extends AbstractBaseFixtures implements DependentFixtureInter
                 DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );
             $game->setGenre($this->getRandomReference('genres'));
+            $game->setStudio($this->getRandomReference('studios'));
             return $game;
         });
         $this->manager->flush();
@@ -43,6 +47,6 @@ class GameFixtures extends AbstractBaseFixtures implements DependentFixtureInter
      */
     public function getDependencies(): array
     {
-        return [GenreFixtures::class];
+        return [GenreFixtures::class, StudioFixtures::class];
     }
 }

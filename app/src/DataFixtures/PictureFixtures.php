@@ -1,26 +1,33 @@
 <?php
+/**
+ * Picture fixtures.
+ */
 
 namespace App\DataFixtures;
 
 use App\Entity\Picture;
-use Faker\Factory;
 
 /**
  * Class PictureFixtures.
+ *
+ * @psalm-suppress MissingConstructor
  */
 class PictureFixtures extends AbstractBaseFixtures
 {
     /**
-     * Load.
+     * Load data.
+     *
+     * @psalm-suppress PossiblyNullReference
+     * @psalm-suppress UnusedClosureParam
      */
     public function loadData(): void
     {
-        $this->faker = Factory::create();
-        for ($i = 0; $i < 10; ++$i) {
+        $this->createMany(20, 'pictures', function (int $i) {
             $picture = new Picture();
             $picture->setFilename($this->faker->unique()->word);
-            $this->manager->persist($picture);
-        }
+            return $picture;
+        });
+
         $this->manager->flush();
     }
 }

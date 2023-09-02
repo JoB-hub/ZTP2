@@ -172,15 +172,19 @@
             </trans-unit>
             <trans-unit id="33">
                 <source>title.genre_edit</source>
-                <target>messages</target>
+                <target>Edytuj gatunek</target>
             </trans-unit>
             <trans-unit id="34">
                 <source>message.deleted_successfully</source>
-                <target>messages</target>
+                <target>Usunięto pomyślnie!</target>
             </trans-unit>
             <trans-unit id="35">
                 <source>title.genre_delete</source>
-                <target>messages</target>
+                <target>Usuń gatunek</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>action.delete</source>
+                <target>Usuń</target>
             </trans-unit>
         </body>
     </file>

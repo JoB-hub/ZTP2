@@ -1,28 +1,36 @@
 <?php
+/**
+ * User fixtures.
+ */
 
 namespace App\DataFixtures;
 
 use App\Entity\User;
-use Faker\Factory;
+use DateTimeImmutable;
 
 /**
  * Class UserFixtures.
+ *
+ * @psalm-suppress MissingConstructor
  */
 class UserFixtures extends AbstractBaseFixtures
 {
     /**
      * Load data.
+     *
+     * @psalm-suppress PossiblyNullReference
+     * @psalm-suppress UnusedClosureParam
      */
     public function loadData(): void
     {
-        $this->faker = Factory::create();
-        for ($i = 0; $i < 10; ++$i) {
+        $this->createMany(20, 'users', function (int $i) {
             $user = new User();
+            $user->setNickname($this->faker->unique()->userName);
             $user->setEmail($this->faker->safeEmail);
-            $user->setNickname($this->faker->userName);
             $user->setPassword($this->faker->password);
-            $this->manager->persist($user);
-        }
+            return $user;
+        });
+
         $this->manager->flush();
     }
 }
