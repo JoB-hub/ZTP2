@@ -16,7 +16,7 @@
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'comment.id') }}</th>
-                <th>{{ 'label.game'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.game'|trans, 'game.title') }}</th>
                 <th>{{ 'label.user'|trans }}</th>
                 <th>{{ 'label.description'|trans }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.createdAt'|trans, 'comment.createdAt') }}</th>

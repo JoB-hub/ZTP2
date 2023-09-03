@@ -1,13 +1,12 @@
 <?php
 /**
- * \App\Entity\Studio controller.
+ * Studio controller.
  */
 
 namespace App\Controller;
 
 use App\Entity\Studio;
-use App\Repository\StudioRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\StudioServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,21 +19,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class StudioController extends AbstractController
 {
     /**
+     * Studio service.
+     */
+    private StudioServiceInterface $studioService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(StudioServiceInterface $studioService)
+    {
+        $this->studioService = $studioService;
+    }
+
+
+    /**
      * Index action.
      *
-     * @param Request            $request          HTTP Request
-     * @param StudioRepository   $studioRepository Studio repository
-     * @param PaginatorInterface $paginator        Paginator
+     * @param Request $request HTTP Request
      *
      * @return Response HTTP response
      */
     #[Route(name: 'studio_index', methods: 'GET')]
-    public function index(Request $request, StudioRepository $studioRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $studioRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            StudioRepository::PAGINATOR_ITEMS_PER_PAGE
+        $pagination = $this->studioService->getPaginatedList(
+            $request->query->getInt('page', 1)
         );
 
         return $this->render('studio/index.html.twig', ['pagination' => $pagination]);
@@ -43,7 +52,7 @@ class StudioController extends AbstractController
     /**
      * Show action.
      *
-     * @param Studio $studio Studio entity
+     * @param Studio $studio Studio
      *
      * @return Response HTTP response
      */
@@ -51,13 +60,10 @@ class StudioController extends AbstractController
         '/{id}',
         name: 'studio_show',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET',
+        methods: 'GET'
     )]
     public function show(Studio $studio): Response
     {
-        return $this->render(
-            'studio/show.html.twig',
-            ['studio' => $studio]
-        );
+        return $this->render('studio/show.html.twig', ['studio' => $studio]);
     }
 }

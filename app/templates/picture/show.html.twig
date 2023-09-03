@@ -6,7 +6,7 @@
 
 {% block body %}
     <h1>{{ 'title.picture_details'|trans({'%id%': picture.id|default('')}) }}</h1>
-    <img src="https://picsum.photos/seed/{{ picture.filename }}/200/300" alt="Image depicting XYZ">
+    <img src="https://picsum.photos/seed/{{ picture.filename }}/300/400" alt="Image depicting XYZ">
     {% if picture is defined and picture|length %}
         <dl class="dl-horizontal">
             <dt>{{ 'label.id'|trans }}</dt>

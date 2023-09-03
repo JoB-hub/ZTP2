@@ -47,12 +47,12 @@ class Game
     private ?Studio $studio = null;
 
     /**
-     * Tags.
+     * Pictures.
      *
      * @var ArrayCollection<int, Picture>
      */
     #[Assert\Valid]
-    #[ORM\ManyToMany(targetEntity: Picture::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
+    #[ORM\ManyToMany(targetEntity: Picture::class, inversedBy: 'games', fetch: 'EXTRA_LAZY', orphanRemoval: true)]
     #[ORM\JoinTable(name: 'games_pictures')]
     private Collection $pictures;
 
@@ -189,7 +189,7 @@ class Game
     /**
      * Remove platform.
      *
-     * @param Platform $platform Tag entity
+     * @param Platform $platform Platform entity
      */
     public function removePlatform(Platform $platform): static
     {

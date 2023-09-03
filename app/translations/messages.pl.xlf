@@ -144,7 +144,7 @@
             </trans-unit>
             <trans-unit id="26">
                 <source>title.user_details</source>
-                <target>messages</target>
+                <target>Szczegóły użytkownika</target>
             </trans-unit>
             <trans-unit id="27">
                 <source>action.show</source>

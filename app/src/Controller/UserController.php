@@ -6,8 +6,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Repository\UserRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\UserService;
+use App\Service\UserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,21 +20,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
+     * User service.
+     */
+    private UserServiceInterface $userService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
+
+
+    /**
      * Index action.
      *
-     * @param Request            $request        HTTP Request
-     * @param UserRepository     $userRepository User repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param Request $request HTTP Request
      *
      * @return Response HTTP response
      */
     #[Route(name: 'user_index', methods: 'GET')]
-    public function index(Request $request, UserRepository $userRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $userRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            UserRepository::PAGINATOR_ITEMS_PER_PAGE
+        $pagination = $this->userService->getPaginatedList(
+            $request->query->getInt('page', 1)
         );
 
         return $this->render('user/index.html.twig', ['pagination' => $pagination]);
@@ -43,7 +53,7 @@ class UserController extends AbstractController
     /**
      * Show action.
      *
-     * @param User $user User entity
+     * @param User $user User
      *
      * @return Response HTTP response
      */
@@ -51,13 +61,10 @@ class UserController extends AbstractController
         '/{id}',
         name: 'user_show',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET',
+        methods: 'GET'
     )]
     public function show(User $user): Response
     {
-        return $this->render(
-            'user/show.html.twig',
-            ['user' => $user]
-        );
+        return $this->render('user/show.html.twig', ['user' => $user]);
     }
 }

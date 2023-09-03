@@ -18,7 +18,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'game.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'game.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'game.description') }}</th>
-                <th>{{ 'label.genre'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.genre'|trans, 'genre.name') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.createdAt'|trans, 'game.createdAT') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>

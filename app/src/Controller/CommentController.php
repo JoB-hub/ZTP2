@@ -6,8 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
-use App\Repository\CommentRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\CommentServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,21 +19,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentController extends AbstractController
 {
     /**
+     * Comment service.
+     */
+    private CommentServiceInterface $commentService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(CommentServiceInterface $commentService)
+    {
+        $this->commentService = $commentService;
+    }
+
+    /**
      * Index action.
      *
-     * @param Request            $request           HTTP Request
-     * @param CommentRepository  $commentRepository Comment repository
-     * @param PaginatorInterface $paginator         Paginator
+     * @param Request $request HTTP Request
      *
      * @return Response HTTP response
      */
     #[Route(name: 'comment_index', methods: 'GET')]
-    public function index(Request $request, CommentRepository $commentRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $commentRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            CommentRepository::PAGINATOR_ITEMS_PER_PAGE
+        $pagination = $this->commentService->getPaginatedList(
+            $request->query->getInt('page', 1)
         );
 
         return $this->render('comment/index.html.twig', ['pagination' => $pagination]);
@@ -43,7 +51,7 @@ class CommentController extends AbstractController
     /**
      * Show action.
      *
-     * @param Comment $comment Comment entity
+     * @param Comment $comment Comment
      *
      * @return Response HTTP response
      */
@@ -51,13 +59,10 @@ class CommentController extends AbstractController
         '/{id}',
         name: 'comment_show',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET',
+        methods: 'GET'
     )]
     public function show(Comment $comment): Response
     {
-        return $this->render(
-            'comment/show.html.twig',
-            ['comment' => $comment]
-        );
+        return $this->render('comment/show.html.twig', ['comment' => $comment]);
     }
 }
