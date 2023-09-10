@@ -37,7 +37,7 @@ class GenreController extends AbstractController
      * Constructor.
      *
      * @param GenreServiceInterface $taskService Task service
-     * @param TranslatorInterface      $translator  Translator
+     * @param TranslatorInterface   $translator  Translator
      */
     public function __construct(GenreServiceInterface $taskService, TranslatorInterface $translator)
     {
@@ -122,8 +122,8 @@ class GenreController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param Genre $genre Genre entity
+     * @param Request $request HTTP request
+     * @param Genre   $genre   Genre entity
      *
      * @return Response HTTP response
      */
@@ -163,8 +163,8 @@ class GenreController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param Genre $genre Genre entity
+     * @param Request $request HTTP request
+     * @param Genre   $genre   Genre entity
      *
      * @return Response HTTP response
      */

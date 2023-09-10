@@ -28,6 +28,7 @@ class UserFixtures extends AbstractBaseFixtures
             $user->setNickname($this->faker->unique()->userName);
             $user->setEmail($this->faker->safeEmail);
             $user->setPassword($this->faker->password);
+
             return $user;
         });
 

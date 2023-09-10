@@ -26,6 +26,7 @@ class StudioFixtures extends AbstractBaseFixtures
         $this->createMany(20, 'studios', function (int $i) {
             $studio = new Studio();
             $studio->setName($this->faker->unique()->word);
+
             return $studio;
         });
 

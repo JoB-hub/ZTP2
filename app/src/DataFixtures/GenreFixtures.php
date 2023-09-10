@@ -19,6 +19,7 @@ class GenreFixtures extends AbstractBaseFixtures
             $genre = new Genre();
             $genre->setName($this->faker->word);
             $genre->setDescription($this->faker->sentence);
+
             return $genre;
         });
         $this->manager->flush();

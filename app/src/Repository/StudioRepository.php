@@ -45,7 +45,7 @@ class StudioRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->orderBy('studio.name', 'DESC');
+            ->orderBy('studio.id', 'DESC');
     }
 
     /**
@@ -58,6 +58,28 @@ class StudioRepository extends ServiceEntityRepository
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
         return $queryBuilder ?? $this->createQueryBuilder('studio');
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Studio $studio Studio entity
+     */
+    public function save(Studio $studio): void
+    {
+        $this->_em->persist($studio);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Studio $category Studio entity
+     */
+    public function delete(Studio $category): void
+    {
+        $this->_em->remove($category);
+        $this->_em->flush();
     }
 
     //    /**

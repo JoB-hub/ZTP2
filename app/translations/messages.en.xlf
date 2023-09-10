@@ -180,11 +180,43 @@
             </trans-unit>
             <trans-unit id="35">
                 <source>title.genre_delete</source>
-                <target>Delete</target>
+                <target>Delete genre</target>
             </trans-unit>
             <trans-unit id="36">
                 <source>action.delete</source>
                 <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>title.studio_create</source>
+                <target>Create a new studio</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>title.studio_edit</source>
+                <target>messages</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>title.studio_delete</source>
+                <target>messages</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>title.platform_create</source>
+                <target>messages</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>title.platform_edit</source>
+                <target>messages</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>title.platform_delete</source>
+                <target>messages</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>message.form_error</source>
+                <target>messages</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>action.edit</source>
+                <target>messages</target>
             </trans-unit>
         </body>
     </file>

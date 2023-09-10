@@ -5,6 +5,7 @@
 
 namespace App\Service;
 
+use App\Entity\Studio;
 use App\Repository\StudioRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -27,8 +28,8 @@ class StudioService implements StudioServiceInterface
     /**
      * Constructor.
      *
-     * @param StudioRepository     $studioRepository Studio repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param StudioRepository   $studioRepository Studio repository
+     * @param PaginatorInterface $paginator        Paginator
      */
     public function __construct(StudioRepository $studioRepository, PaginatorInterface $paginator)
     {
@@ -50,5 +51,25 @@ class StudioService implements StudioServiceInterface
             $page,
             StudioRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Studio $studio Studio entity
+     */
+    public function save(Studio $studio): void
+    {
+        $this->studioRepository->save($studio);
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Studio $studio Studio entity
+     */
+    public function delete(Studio $studio): void
+    {
+        $this->studioRepository->delete($studio);
     }
 }

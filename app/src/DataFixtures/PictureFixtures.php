@@ -25,6 +25,7 @@ class PictureFixtures extends AbstractBaseFixtures
         $this->createMany(20, 'pictures', function (int $i) {
             $picture = new Picture();
             $picture->setFilename($this->faker->unique()->word);
+
             return $picture;
         });
 

@@ -51,7 +51,7 @@ class GameRepository extends ServiceEntityRepository
                 'partial genre.{id, name}'
             )
             ->join('game.genre', 'genre')
-            ->orderBy('game.title', 'DESC');
+            ->orderBy('game.id', 'DESC');
     }
 
     /**

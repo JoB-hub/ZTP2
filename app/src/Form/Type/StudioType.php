@@ -1,20 +1,20 @@
 <?php
 /**
- * Genre type.
+ * Studio type.
  */
 
 namespace App\Form\Type;
 
-use App\Entity\Genre;
+use App\Entity\Studio;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class GenreType.
+ * Class StudioType.
  */
-class GenreType extends AbstractType
+class StudioType extends AbstractType
 {
     /**
      * Builds the form.
@@ -36,16 +36,7 @@ class GenreType extends AbstractType
                 'label' => 'label.name',
                 'required' => true,
                 'attr' => ['max_length' => 64],
-            ],
-        );
-        $builder->add(
-            'description',
-            TextType::class,
-            [
-                'label' => 'label.description',
-                'required' => true,
-                'attr' => ['max_length' => 500],
-            ],
+            ]
         );
     }
 
@@ -56,7 +47,7 @@ class GenreType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Genre::class]);
+        $resolver->setDefaults(['data_class' => Studio::class]);
     }
 
     /**
@@ -69,6 +60,6 @@ class GenreType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'genre';
+        return 'studio';
     }
 }

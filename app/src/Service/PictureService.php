@@ -27,8 +27,8 @@ class PictureService implements PictureServiceInterface
     /**
      * Constructor.
      *
-     * @param PictureRepository     $pictureRepository Picture repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param PictureRepository  $pictureRepository Picture repository
+     * @param PaginatorInterface $paginator         Paginator
      */
     public function __construct(PictureRepository $pictureRepository, PaginatorInterface $paginator)
     {

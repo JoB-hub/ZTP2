@@ -46,7 +46,7 @@ class PlatformRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->orderBy('platform.name', 'DESC');
+            ->orderBy('platform.id', 'DESC');
     }
 
     /**
@@ -61,28 +61,25 @@ class PlatformRepository extends ServiceEntityRepository
         return $queryBuilder ?? $this->createQueryBuilder('platform');
     }
 
-    //    /**
-    //     * @return Platform[] Returns an array of Platform objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * Save entity.
+     *
+     * @param Platform $platform Platform entity
+     */
+    public function save(Platform $platform): void
+    {
+        $this->_em->persist($platform);
+        $this->_em->flush();
+    }
 
-    //    public function findOneBySomeField($value): ?Platform
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    /**
+     * Delete entity.
+     *
+     * @param Platform $platform Platform entity
+     */
+    public function delete(Platform $platform): void
+    {
+        $this->_em->remove($platform);
+        $this->_em->flush();
+    }
 }

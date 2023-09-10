@@ -46,7 +46,7 @@ class UserRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->orderBy('user.nickname', 'DESC');
+            ->orderBy('user.id', 'DESC');
     }
 
     /**

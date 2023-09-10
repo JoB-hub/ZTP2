@@ -5,6 +5,7 @@
 
 namespace App\Service;
 
+use App\Entity\Platform;
 use App\Repository\PlatformRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -27,8 +28,8 @@ class PlatformService implements PlatformServiceInterface
     /**
      * Constructor.
      *
-     * @param PlatformRepository     $platformRepository Platform repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param PlatformRepository $platformRepository Platform repository
+     * @param PaginatorInterface $paginator          Paginator
      */
     public function __construct(PlatformRepository $platformRepository, PaginatorInterface $paginator)
     {
@@ -50,5 +51,25 @@ class PlatformService implements PlatformServiceInterface
             $page,
             PlatformRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Platform $platform Platform entity
+     */
+    public function save(Platform $platform): void
+    {
+        $this->platformRepository->save($platform);
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Platform $platform Platform entity
+     */
+    public function delete(Platform $platform): void
+    {
+        $this->platformRepository->delete($platform);
     }
 }

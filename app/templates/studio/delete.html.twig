@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.genre_delete'|trans({'%id%': genre.id|default('')}) }}
+    {{ 'title.studio_delete'|trans({'%id%': studio.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
     {% include 'default/_form.html.twig' with {
-        page_title: 'title.genre_delete'|trans({'%id%': genre.id|default('')}),
+        page_title: 'title.studio_delete'|trans({'%id%': studio.id|default('')}),
         form: form,
         submit_label: 'action.delete'|trans,
-        back_to_list_path: 'genre_index',
+        back_to_list_path: 'studio_index',
     } %}
 {% endblock %}
