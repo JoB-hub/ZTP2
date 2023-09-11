@@ -165,10 +165,23 @@ class PlatformController extends AbstractController
     #[Route('/{id}/delete', name: 'platform_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Platform $platform): Response
     {
-        $form = $this->createForm(FormType::class, $platform, [
-            'method' => 'DELETE',
-            'action' => $this->generateUrl('platform_delete', ['id' => $platform->getId()]),
-        ]);
+        if(!$this->platformService->canBeDeleted($platform)) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.platform_contains_games')
+            );
+
+            return $this->redirectToRoute('platform_index');
+        }
+
+        $form = $this->createForm(
+            FormType::class,
+            $platform,
+            [
+                'method' => 'DELETE',
+                'action' => $this->generateUrl('platform_delete', ['id' => $platform->getId()]),
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

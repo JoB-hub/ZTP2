@@ -6,7 +6,6 @@
 namespace App\Controller;
 
 use App\Entity\Picture;
-use App\Service\PictureService;
 use App\Service\PictureServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

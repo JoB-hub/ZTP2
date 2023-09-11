@@ -28,8 +28,8 @@ class StudioFixtures extends AbstractBaseFixtures
             $studio->setName($this->faker->unique()->word);
 
             return $studio;
-        });
-
+        }
+        );
         $this->manager->flush();
     }
 }

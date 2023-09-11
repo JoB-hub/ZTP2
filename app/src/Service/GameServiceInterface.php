@@ -21,4 +21,18 @@ interface GameServiceInterface
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page): PaginationInterface;
+
+    /**
+     * Save entity.
+     *
+     * @param Game $game Game entity
+     */
+    public function save(Game $game): void;
+
+    /**
+     * Delete entity.
+     *
+     * @param Game $game Game entity
+     */
+    public function delete(Game $game): void;
 }

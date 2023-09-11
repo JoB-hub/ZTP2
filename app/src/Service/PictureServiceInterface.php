@@ -21,4 +21,13 @@ interface PictureServiceInterface
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page): PaginationInterface;
+
+    /**
+     * Find by name.
+     *
+     * @param string $filename Picture filename
+     *
+     * @return Picture|null Picture entity
+     */
+    public function findOneByFilename(string $filename): ?Picture;
 }

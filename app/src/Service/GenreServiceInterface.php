@@ -29,5 +29,19 @@ interface GenreServiceInterface
      */
     public function save(Genre $genre): void;
 
+    /**
+     * Delete entity.
+     *
+     * @param Genre $genre Genre entity
+     */
     public function delete(Genre $genre): void;
+
+    /**
+     * Can Genre be deleted?
+     *
+     * @param Genre $genre Genre entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Genre $genre): bool;
 }

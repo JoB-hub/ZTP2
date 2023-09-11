@@ -36,12 +36,12 @@ class GenreController extends AbstractController
     /**
      * Constructor.
      *
-     * @param GenreServiceInterface $taskService Task service
+     * @param GenreServiceInterface $gameService Genre service
      * @param TranslatorInterface   $translator  Translator
      */
-    public function __construct(GenreServiceInterface $taskService, TranslatorInterface $translator)
+    public function __construct(GenreServiceInterface $gameService, TranslatorInterface $translator)
     {
-        $this->genreService = $taskService;
+        $this->genreService = $gameService;
         $this->translator = $translator;
     }
 
@@ -163,18 +163,31 @@ class GenreController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request $request HTTP request
-     * @param Genre   $genre   Genre entity
+     * @param Request  $request  HTTP request
+     * @param Genre $genre Genre entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'genre_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Genre $genre): Response
     {
-        $form = $this->createForm(FormType::class, $genre, [
-            'method' => 'DELETE',
-            'action' => $this->generateUrl('genre_delete', ['id' => $genre->getId()]),
-        ]);
+        if(!$this->genreService->canBeDeleted($genre)) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.genre_contains_games')
+            );
+
+            return $this->redirectToRoute('genre_index');
+        }
+
+        $form = $this->createForm(
+            FormType::class,
+            $genre,
+            [
+                'method' => 'DELETE',
+                'action' => $this->generateUrl('genre_delete', ['id' => $genre->getId()]),
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

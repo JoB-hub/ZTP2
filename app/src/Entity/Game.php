@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\GameRepository;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: GameRepository::class)]
 #[ORM\Table(name: 'games')]
@@ -25,7 +26,13 @@ class Game
     #[ORM\Column(length: 1000)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    /**
+     * Created at.
+     *
+     * @var DateTimeImmutable|null
+     */
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Gedmo\Timestampable(on: 'create')]
     private ?DateTimeInterface $createdAt = null;
 
     /**
@@ -46,6 +53,9 @@ class Game
     #[ORM\JoinColumn(nullable: false)]
     private ?Studio $studio = null;
 
+    #[ORM\OneToOne(mappedBy: 'game', cascade: ['persist', 'remove'])]
+    private ?Pic $pic = null;
+
     /**
      * Pictures.
      *
@@ -65,6 +75,25 @@ class Game
     #[ORM\ManyToMany(targetEntity: Platform::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
     #[ORM\JoinTable(name: 'games_platforms')]
     private Collection $platforms;
+
+    /**
+     * Slug.
+     * @var string|null
+     */
+    #[ORM\Column(type: 'string', length: 64)]
+    #[Gedmo\Slug(fields: ['title'])]
+    private ?string $slug = null;
+
+    /**
+     * Author.
+     *
+     * @var User|null
+     */
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Type(User::class)]
+    private ?User $author;
 
     /**
      * Constructor.
@@ -148,7 +177,7 @@ class Game
     public function addPicture(Picture $picture): void
     {
         if (!$this->pictures->contains($picture)) {
-            $this->pictures->add($picture);
+            $this->pictures[] = $picture;
         }
     }
 
@@ -177,13 +206,11 @@ class Game
      *
      * @param Platform $platform Platform entity
      */
-    public function addPlatform(Platform $platform): static
+    public function addPlatform(Platform $platform): void
     {
         if (!$this->platforms->contains($platform)) {
-            $this->platforms->add($platform);
+            $this->platforms[] = $platform;
         }
-
-        return $this;
     }
 
     /**
@@ -191,9 +218,48 @@ class Game
      *
      * @param Platform $platform Platform entity
      */
-    public function removePlatform(Platform $platform): static
+    public function removePlatform(Platform $platform): void
     {
         $this->platforms->removeElement($platform);
+    }
+
+    public function getPic(): ?Pic
+    {
+        return $this->pic;
+    }
+
+    public function setPic(Pic $pic): static
+    {
+        // set the owning side of the relation if necessary
+        if ($pic->getGame() !== $this) {
+            $pic->setGame($this);
+        }
+
+        $this->pic = $pic;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): static
+    {
+        $this->author = $author;
 
         return $this;
     }

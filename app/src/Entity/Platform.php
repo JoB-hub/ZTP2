@@ -4,17 +4,36 @@ namespace App\Entity;
 
 use App\Repository\PlatformRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class Platform.
+ */
 #[ORM\Entity(repositoryClass: PlatformRepository::class)]
 #[ORM\Table(name: 'platforms')]
+#[UniqueEntity(fields: ['name'])]
 class Platform
 {
+    /**
+     * Primary key.
+     *
+     * @var int|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 45)]
+    /**
+     * Name.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 64)]
     private ?string $name = null;
 
     public function getId(): ?int

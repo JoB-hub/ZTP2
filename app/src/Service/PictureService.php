@@ -5,6 +5,7 @@
 
 namespace App\Service;
 
+use App\Entity\Picture;
 use App\Repository\PictureRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -50,5 +51,37 @@ class PictureService implements PictureServiceInterface
             $page,
             PictureRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Picture $picture Picture entity
+     */
+    public function save(Picture $picture): void
+    {
+        $this->pictureRepository->save($picture);
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Picture $picture Picture entity
+     */
+    public function delete(Picture $picture): void
+    {
+        $this->pictureRepository->delete($picture);
+    }
+
+    /**
+     * Find by title.
+     *
+     * @param string $filename Picture filename
+     *
+     * @return Picture|null Picture entity
+     */
+    public function findOneByFilename(string $filename): ?Picture
+    {
+        return $this->pictureRepository->findOneByFilename($filename);
     }
 }

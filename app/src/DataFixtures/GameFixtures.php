@@ -3,6 +3,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\Game;
+use App\Entity\Platform;
+use App\Entity\User;
 use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
@@ -32,6 +34,19 @@ class GameFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             );
             $game->setGenre($this->getRandomReference('genres'));
             $game->setStudio($this->getRandomReference('studios'));
+            $game->addPicture($this->getRandomReference('pictures'));
+
+            /** @var array<array-key, Platform> $platforms */
+            $platforms = $this->getRandomReferences(
+                'platforms',
+                $this->faker->numberBetween(0, 5)
+            );
+            foreach ($platforms as $platform) {
+                $game->addPlatform($platform);
+            }
+            /** @var User $author */
+            $author = $this->getRandomReference('users');
+            $game->setAuthor($author);
 
             return $game;
         });

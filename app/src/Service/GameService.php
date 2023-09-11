@@ -5,6 +5,7 @@
 
 namespace App\Service;
 
+use App\Entity\Game;
 use App\Repository\GameRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -51,4 +52,25 @@ class GameService implements GameServiceInterface
             GameRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
+
+    /**
+     * Save entity.
+     *
+     * @param Game $game Game entity
+     */
+    public function save(Game $game): void
+    {
+        $this->gameRepository->save($game);
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Game $game Game entity
+     */
+    public function delete(Game $game): void
+    {
+        $this->gameRepository->delete($game);
+    }
+
 }

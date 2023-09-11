@@ -5,7 +5,11 @@
 
 namespace App\Service;
 
+use App\Entity\Comment;
 use App\Repository\CommentRepository;
+use App\Repository\GameRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -18,6 +22,7 @@ class CommentService implements CommentServiceInterface
      * Comment repository.
      */
     private CommentRepository $commentRepository;
+
 
     /**
      * Paginator.
@@ -51,4 +56,42 @@ class CommentService implements CommentServiceInterface
             CommentRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
+
+    /**
+     * Save entity.
+     *
+     * @param Comment $comment Comment entity
+     */
+    public function save(Comment $comment): void
+    {
+        $this->commentRepository->save($comment);
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Comment $comment Comment entity
+     */
+    public function delete(Comment $comment): void
+    {
+        $this->commentRepository->delete($comment);
+    }
+
+//    /**
+//     * Can Comment be deleted?
+//     *
+//     * @param Comment $comment Comment entity
+//     *
+//     * @return bool Result
+//     */
+//    public function canBeDeleted(Comment $comment): bool
+//    {
+//        try {
+//            $result = $this->gameRepository->countByComment($comment);
+//
+//            return !($result > 0);
+//        } catch (NoResultException|NonUniqueResultException) {
+//            return false;
+//        }
+//    }
 }

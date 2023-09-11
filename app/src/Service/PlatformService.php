@@ -28,8 +28,8 @@ class PlatformService implements PlatformServiceInterface
     /**
      * Constructor.
      *
-     * @param PlatformRepository $platformRepository Platform repository
-     * @param PaginatorInterface $paginator          Paginator
+     * @param PlatformRepository  $platformRepository Platform repository
+     * @param PaginatorInterface $paginator         Paginator
      */
     public function __construct(PlatformRepository $platformRepository, PaginatorInterface $paginator)
     {
@@ -71,5 +71,29 @@ class PlatformService implements PlatformServiceInterface
     public function delete(Platform $platform): void
     {
         $this->platformRepository->delete($platform);
+    }
+
+    /**
+     * Can Platform be deleted?
+     *
+     * @param Platform $platform Platform entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Platform $platform): bool
+    {
+        return true;
+    }
+
+    /**
+     * Find by title.
+     *
+     * @param string $name Platform title
+     *
+     * @return Platform|null Platform entity
+     */
+    public function findOneByName(string $name): ?Platform
+    {
+        return $this->platformRepository->findOneByName($name);
     }
 }

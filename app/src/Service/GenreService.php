@@ -7,6 +7,10 @@ namespace App\Service;
 
 use App\Entity\Genre;
 use App\Repository\GenreRepository;
+use App\Repository\GameRepository;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -21,6 +25,12 @@ class GenreService implements GenreServiceInterface
     private GenreRepository $genreRepository;
 
     /**
+     * Game repository.
+     */
+    #[ORM\Column(type: 'string')]
+    private GameRepository $gameRepository;
+
+    /**
      * Paginator.
      */
     private PaginatorInterface $paginator;
@@ -31,9 +41,10 @@ class GenreService implements GenreServiceInterface
      * @param GenreRepository    $genreRepository Genre repository
      * @param PaginatorInterface $paginator       Paginator
      */
-    public function __construct(GenreRepository $genreRepository, PaginatorInterface $paginator)
+    public function __construct(GenreRepository $genreRepository, GameRepository $gameRepository, PaginatorInterface $paginator)
     {
         $this->genreRepository = $genreRepository;
+        $this->gameRepository = $gameRepository;
         $this->paginator = $paginator;
     }
 
@@ -71,5 +82,23 @@ class GenreService implements GenreServiceInterface
     public function delete(Genre $genre): void
     {
         $this->genreRepository->delete($genre);
+    }
+
+    /**
+     * Can Genre be deleted?
+     *
+     * @param Genre $genre Genre entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Genre $genre): bool
+    {
+        try {
+            $result = $this->gameRepository->countByGenre($genre);
+
+            return !($result > 0);
+        } catch (NoResultException|NonUniqueResultException) {
+            return false;
+        }
     }
 }

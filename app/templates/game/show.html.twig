@@ -18,6 +18,32 @@
             <dd>{{  game.genre.name }}</dd>
             <dt>{{ 'label.studio'|trans }}</dt>
             <dd>{{  game.studio.name }}</dd>
+            <dt>{{ 'label.platforms'|trans }}</dt>
+            {% if game.platforms is defined and game.platforms|length %}
+                <ul>
+                    {% for platform in game.platforms %}
+                    <li>
+                        {{ platform.name }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                -
+            {% endif %}
+            <dt>{{ 'label.pictures'|trans }}</dt>
+            {% if game.pictures is defined and game.pictures|length %}
+                <ul>
+                    {% for picture in game.pictures %}
+                        <li>
+                            <img src="https://picsum.photos/seed/{{ picture.filename }}/200/200" alt="Image depicting XYZ">
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                -
+            {% endif %}
+            <dt>{{ 'label.author'|trans }}</dt>
+            <dd>{{  game.author }}</dd>
             <dt>{{ 'label.createdAt'|trans }}</dt>
             <dd>{{ game.createdAt|date('Y/m/d') }}</dd>
         </dl>

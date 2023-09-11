@@ -67,4 +67,26 @@ class PictureRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('picture');
     }
+
+    /**
+     * Save entity.
+     *
+     * @param Picture $picture Picture entity
+     */
+    public function save(Picture $picture): void
+    {
+        $this->_em->persist($picture);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Picture $picture Picture entity
+     */
+    public function delete(Picture $picture): void
+    {
+        $this->_em->remove($picture);
+        $this->_em->flush();
+    }
 }

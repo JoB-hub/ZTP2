@@ -3,33 +3,67 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use DateTimeImmutable;
 use DateTimeInterface;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use phpDocumentor\Reflection\DocBlock\Description;
 
+/**
+ * Class Comment.
+ */
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 #[ORM\Table(name: 'comments')]
 class Comment
 {
+    /**
+     * Primary key.
+     *
+     * @var int|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 1000, nullable: true)]
+    /**
+     * Title.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(type: 'string', length: 1000)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max: 1000)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    /**
+     * Created at.
+     *
+     * @var DateTimeImmutable|null
+     */
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\Type(DateTimeImmutable::class)]
+    #[Gedmo\Timestampable(on: 'create')]
     private ?DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    /**
+     * Updated at.
+     *
+     * @var DateTimeImmutable|null
+     */
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\Type(DateTimeImmutable::class)]
+    #[Gedmo\Timestampable(on: 'update')]
     private ?DateTimeInterface $updatedAt = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Game::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Game $game = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
@@ -88,6 +122,18 @@ class Comment
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

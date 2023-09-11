@@ -37,4 +37,22 @@ interface PlatformServiceInterface
      * @return void
      */
     public function delete(Platform $platform): void;
+
+    /**
+     * Can Platform be deleted?
+     *
+     * @param Platform $platform Platform entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Platform $platform): bool;
+
+    /**
+     * Find by name.
+     *
+     * @param string $name Platform name
+     *
+     * @return Platform|null Platform entity
+     */
+    public function findOneByName(string $name): ?Platform;
 }

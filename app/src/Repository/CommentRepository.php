@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -52,9 +54,11 @@ class CommentRepository extends ServiceEntityRepository
         return $this->getOrCreateQueryBuilder()
             ->select(
                 'partial comment.{id, description, createdAt, updatedAt}',
-                'partial game.{id, title}'
+                'partial game.{id, title}',
+                'partial user.{id, nickname, email, roles, password}'
             )
             ->join('comment.game', 'game')
+            ->join('comment.user', 'user')
             ->orderBy('comment.updatedAt', 'ASC');
     }
 
@@ -69,28 +73,25 @@ class CommentRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('comment');
     }
-    //    /**
-    //     * @return Comment[] Returns an array of Comment objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * Save entity.
+     *
+     * @param Comment $comment Comment entity
+     */
+    public function save(Comment $comment): void
+    {
+        $this->_em->persist($comment);
+        $this->_em->flush();
+    }
 
-    //    public function findOneBySomeField($value): ?Comment
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    /**
+     * Delete entity.
+     *
+     * @param Comment $comment Comment entity
+     */
+    public function delete(Comment $comment): void
+    {
+        $this->_em->remove($comment);
+        $this->_em->flush();
+    }
 }

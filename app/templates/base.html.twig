@@ -18,6 +18,17 @@
     {% block body %}{% endblock %}
 </div>
 
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div>{{ app.user.nickname }}</div>
+    <div>
+        <a href="{{ url('app_logout') }}">{{ 'action_logout'|trans }}</a>
+    </div>
+{% else %}
+    <div>
+        <a href="{{ url('app_login') }}">{{ 'action_login'|trans }}</a>
+    </div>
+{% endif %}
+
 {% block javascripts %}
     <script
             src="https://code.jquery.com/jquery-3.6.0.slim.min.js"

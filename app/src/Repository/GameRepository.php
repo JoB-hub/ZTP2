@@ -2,18 +2,26 @@
 
 namespace App\Repository;
 
+use App\Entity\Comment;
 use App\Entity\Game;
+use App\Entity\Genre;
+use App\Entity\Platform;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Game>
+ * Class GameRepository.
  *
  * @method Game|null find($id, $lockMode = null, $lockVersion = null)
  * @method Game|null findOneBy(array $criteria, array $orderBy = null)
  * @method Game[]    findAll()
  * @method Game[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
+ * @extends ServiceEntityRepository<Game>
  */
 class GameRepository extends ServiceEntityRepository
 {
@@ -55,6 +63,70 @@ class GameRepository extends ServiceEntityRepository
     }
 
     /**
+     * Count games by genre.
+     *
+     * @param Genre $genre Genre
+     *
+     * @return int Number of games in genre
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByGenre(Genre $genre): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('game.id'))
+            ->where('game.genre = :genre')
+            ->setParameter(':genre', $genre)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * Count games by comment.
+     *
+     * @param Comment $comment Comment
+     *
+     * @return int Number of games in comment
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByComment(Comment $comment): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('game.id'))
+            ->where('game.comment = :comment')
+            ->setParameter(':comment', $comment)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Game $game Game entity
+     */
+    public function save(Game $game): void
+    {
+        $this->_em->persist($game);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Game $game Game entity
+     */
+    public function delete(Game $game): void
+    {
+        $this->_em->remove($game);
+        $this->_em->flush();
+    }
+
+    /**
      * Get or create new query builder.
      *
      * @param QueryBuilder|null $queryBuilder Query builder
@@ -65,4 +137,22 @@ class GameRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('game');
     }
+
+    /**
+     * Query games by author.
+     *
+     * @param User $user User entity
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByAuthor(User $user): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll();
+
+        $queryBuilder->andWhere('game.author = :author')
+            ->setParameter('author', $user);
+
+        return $queryBuilder;
+    }
+
 }
