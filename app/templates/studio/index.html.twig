@@ -6,9 +6,12 @@
 
 {% block body %}
     <h1>{{ 'title.studio_list'|trans }}</h1>
-    <a href="{{ url('studio_create') }}" title="{{ 'title.studio_create'|trans }}">
-        {{ 'title.studio_create'|trans }}
-    </a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ url('studio_create') }}" title="{{ 'title.studio_create'|trans }}">
+            {{ 'title.studio_create'|trans }}
+        </a>
+    {% endif %}
+
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -32,12 +35,16 @@
                         <a href="{{ url('studio_show', {id: studio.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
                         </a>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ url('studio_edit', {id: studio.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
-                        <a href="{{ url('studio_delete', {id: studio.id}) }}" title="{{ 'action.delete'|trans }}">
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ url('studio_delete', {id: studio.id}) }}" title="{{ 'action.delete'|trans }}">
                             {{ 'action.delete'|trans }}
                         </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

@@ -154,6 +154,7 @@ class GameController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'game_edit', methods: 'GET|PUT')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Game $game): Response
     {
         $form = $this->createForm(
@@ -199,6 +200,7 @@ class GameController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'game_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Game $game): Response
     {
         $form = $this->createForm(

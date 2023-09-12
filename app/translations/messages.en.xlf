@@ -350,6 +350,10 @@
                 <source>label.users</source>
                 <target>Users</target>
             </trans-unit>
+            <trans-unit id="78">
+                <source>action_register</source>
+                <target>Register</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

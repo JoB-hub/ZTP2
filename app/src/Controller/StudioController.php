@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\Studio;
 use App\Form\Type\StudioType;
 use App\Service\StudioServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -90,6 +91,7 @@ class StudioController extends AbstractController
         name: 'studio_create',
         methods: 'GET|POST',
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
         $studio = new Studio();
@@ -122,6 +124,7 @@ class StudioController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'studio_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Studio $studio): Response
     {
         $form = $this->createForm(
@@ -163,6 +166,7 @@ class StudioController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'studio_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Studio $studio): Response
     {
         if (!$this->studioService->canBeDeleted($studio)) {

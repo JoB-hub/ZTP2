@@ -1,9 +1,3 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}
-    {{ 'title.studio_delete'|trans({'%id%': studio.id|default('')}) }}
-{% endblock %}
-
 {% block body %}
     {% include 'default/_form.html.twig' with {
         page_title: 'title.studio_delete'|trans({'%id%': studio.id|default('')}),

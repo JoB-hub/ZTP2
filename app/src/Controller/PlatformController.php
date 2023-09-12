@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\Platform;
 use App\Form\Type\PlatformType;
 use App\Service\PlatformServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -87,6 +88,7 @@ class PlatformController extends AbstractController
         name: 'platform_create',
         methods: 'GET|POST',
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
         $platform = new Platform();
@@ -119,6 +121,7 @@ class PlatformController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'platform_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Platform $platform): Response
     {
         $form = $this->createForm(
@@ -160,6 +163,7 @@ class PlatformController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'platform_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Platform $platform): Response
     {
         if (!$this->platformService->canBeDeleted($platform)) {

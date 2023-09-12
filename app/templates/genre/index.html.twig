@@ -6,9 +6,11 @@
 
 {% block body %}
     <h1>{{ 'title.genre_list'|trans }}</h1>
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ url('genre_create') }}" title="{{ 'title.genre_create'|trans }}">
         {{ 'title.genre_create'|trans }}
     </a>
+    {% endif %}
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">

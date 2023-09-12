@@ -37,6 +37,12 @@
 <header>
     <h1>{{ 'label.ztp_project'|trans }}</h1>
     <nav>
+        <a href="{{ url('app_login') }}">
+            {{ 'action_login'|trans }}
+        </a>
+        <a href="{{ url('app_register') }}">
+            {{ 'action_register'|trans }}
+        </a>
         <a href="{{ url('game_index') }}" title="{{ 'label.games'|trans }}">
             {{ 'label.games'|trans }}
         </a>
@@ -67,10 +73,13 @@
     <div>
         <a href="{{ url('app_logout') }}">{{ 'action_logout'|trans }}</a>
     </div>
-{% else %}
-    <div>
-        <a href="{{ url('app_login') }}">{{ 'action_login'|trans }}</a>
-    </div>
+{#{% else %}#}
+{#    <div>#}
+{#        <a href="{{ url('app_login') }}">{{ 'action_login'|trans }}</a>#}
+{#    </div>#}
+{#    <div>#}
+{#        <a href="{{ url('app_register') }}">{{ 'action_registen'|trans }}</a>#}
+{#    </div>#}
 {% endif %}
 
 {% block javascripts %}

@@ -6,9 +6,11 @@
 
 {% block body %}
     <h1>{{ 'title.platform_list'|trans }}</h1>
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ url('platform_create') }}" title="{{ 'title.platform_create'|trans }}">
         {{ 'title.platform_create'|trans }}
     </a>
+    {% endif %}
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -32,12 +34,16 @@
                         <a href="{{ url('platform_show', {id: platform.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
                         </a>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ url('platform_edit', {id: platform.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ url('platform_delete', {id: platform.id}) }}" title="{{ 'action.delete'|trans }}">
                             {{ 'action.delete'|trans }}
                         </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

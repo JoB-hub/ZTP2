@@ -50,15 +50,15 @@ class Game
     #[ORM\OneToOne(mappedBy: 'game', cascade: ['persist', 'remove'])]
     private ?Pic $pic = null;
 
-    /**
-     * Pictures.
-     *
-     * @var ArrayCollection<int, Picture>
-     */
-    #[Assert\Valid]
-    #[ORM\ManyToMany(targetEntity: Picture::class, inversedBy: 'games', fetch: 'EXTRA_LAZY', orphanRemoval: true)]
-    #[ORM\JoinTable(name: 'games_pictures')]
-    private Collection $pictures;
+//    /**
+//     * Pictures.
+//     *
+//     * @var ArrayCollection<int, Picture>
+//     */
+//    #[Assert\Valid]
+//    #[ORM\ManyToMany(targetEntity: Picture::class, inversedBy: 'games', fetch: 'EXTRA_LAZY', orphanRemoval: true)]
+//    #[ORM\JoinTable(name: 'games_pictures')]
+//    private Collection $pictures;
 
     /**
      * Platforms.
@@ -91,7 +91,7 @@ class Game
      */
     public function __construct()
     {
-        $this->pictures = new ArrayCollection();
+//        $this->pictures = new ArrayCollection();
         $this->platforms = new ArrayCollection();
     }
 
@@ -150,37 +150,37 @@ class Game
         $this->studio = $studio;
     }
 
-    /**
-     * Getter for pictures.
-     *
-     * @return Collection<int, Picture> Pictures collection
-     */
-    public function getPictures(): Collection
-    {
-        return $this->pictures;
-    }
+//    /**
+//     * Getter for pictures.
+//     *
+//     * @return Collection<int, Picture> Pictures collection
+//     */
+//    public function getPictures(): Collection
+//    {
+//        return $this->pictures;
+//    }
 
-    /**
-     * Add picture.
-     *
-     * @param Picture $picture Picture entity
-     */
-    public function addPicture(Picture $picture): void
-    {
-        if (!$this->pictures->contains($picture)) {
-            $this->pictures[] = $picture;
-        }
-    }
+//    /**
+//     * Add picture.
+//     *
+//     * @param Picture $picture Picture entity
+//     */
+//    public function addPicture(Picture $picture): void
+//    {
+//        if (!$this->pictures->contains($picture)) {
+//            $this->pictures[] = $picture;
+//        }
+//    }
 
-    /**
-     * Remove picture.
-     *
-     * @param Picture $picture Picture entity
-     */
-    public function removePicture(Picture $picture): void
-    {
-        $this->pictures->removeElement($picture);
-    }
+//    /**
+//     * Remove picture.
+//     *
+//     * @param Picture $picture Picture entity
+//     */
+//    public function removePicture(Picture $picture): void
+//    {
+//        $this->pictures->removeElement($picture);
+//    }
 
     /**
      * Getter for platforms.
