@@ -1,18 +1,29 @@
 <?php
+/**
+ * Game entity.
+ */
 
 namespace App\Entity;
 
 use App\Repository\GameRepository;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+/**
+ * Game class.
+ */
 #[ORM\Entity(repositoryClass: GameRepository::class)]
 #[ORM\Table(name: 'games')]
 class Game
 {
+    /**
+     * Primary key.
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -27,11 +38,11 @@ class Game
     /**
      * Created at.
      *
-     * @var \DateTimeImmutable|null
+     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?\DateTimeInterface $createdAt = null;
+    private ?DateTimeInterface $createdAt = null;
 
     /**
      * Genre.
@@ -42,23 +53,20 @@ class Game
 
     /**
      * Studio.
+     *
+     * @var Studio|null
      */
     #[ORM\ManyToOne(targetEntity: Studio::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Studio $studio = null;
 
+    /**
+     * Pic.
+     *
+     * @var Pic|null
+     */
     #[ORM\OneToOne(mappedBy: 'game', cascade: ['persist', 'remove'])]
     private ?Pic $pic = null;
-
-//    /**
-//     * Pictures.
-//     *
-//     * @var ArrayCollection<int, Picture>
-//     */
-//    #[Assert\Valid]
-//    #[ORM\ManyToMany(targetEntity: Picture::class, inversedBy: 'games', fetch: 'EXTRA_LAZY', orphanRemoval: true)]
-//    #[ORM\JoinTable(name: 'games_pictures')]
-//    private Collection $pictures;
 
     /**
      * Platforms.
@@ -91,96 +99,128 @@ class Game
      */
     public function __construct()
     {
-//        $this->pictures = new ArrayCollection();
         $this->platforms = new ArrayCollection();
     }
 
+    /**
+     * Getter for id.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for title.
+     *
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * Setter for title.
+     *
+     * @param string $title
+     *
+     * @return void
+     */
     public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
+    /**
+     * Getter for description.
+     *
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * Setter for description.
+     *
+     * @param string $description
+     *
+     * @return void
+     */
     public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    /**
+     * Getter for createdAt.
+     *
+     * @return DateTimeInterface|null
+     */
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): void
+    /**
+     * Setter for createdAt.
+     *
+     * @param DateTimeInterface $createdAt
+     *
+     * @return void
+     */
+    public function setCreatedAt(DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
+    /**
+     * Getter for genre.
+     *
+     * @return Genre|null
+     */
     public function getGenre(): ?Genre
     {
         return $this->genre;
     }
 
+    /**
+     * Setter for genre.
+     *
+     * @param Genre|null $genre
+     *
+     * @return void
+     */
     public function setGenre(?Genre $genre): void
     {
         $this->genre = $genre;
     }
 
+    /**
+     * Getter for studio.
+     *
+     * @return Studio|null
+     */
     public function getStudio(): ?Studio
     {
         return $this->studio;
     }
 
+    /**
+     * Setter for studio.
+     *
+     * @param Studio|null $studio
+     *
+     * @return void
+     */
     public function setStudio(?Studio $studio): void
     {
         $this->studio = $studio;
     }
-
-//    /**
-//     * Getter for pictures.
-//     *
-//     * @return Collection<int, Picture> Pictures collection
-//     */
-//    public function getPictures(): Collection
-//    {
-//        return $this->pictures;
-//    }
-
-//    /**
-//     * Add picture.
-//     *
-//     * @param Picture $picture Picture entity
-//     */
-//    public function addPicture(Picture $picture): void
-//    {
-//        if (!$this->pictures->contains($picture)) {
-//            $this->pictures[] = $picture;
-//        }
-//    }
-
-//    /**
-//     * Remove picture.
-//     *
-//     * @param Picture $picture Picture entity
-//     */
-//    public function removePicture(Picture $picture): void
-//    {
-//        $this->pictures->removeElement($picture);
-//    }
 
     /**
      * Getter for platforms.
@@ -214,11 +254,23 @@ class Game
         $this->platforms->removeElement($platform);
     }
 
+    /**
+     * Getter for pics.
+     *
+     * @return Pic|null
+     */
     public function getPic(): ?Pic
     {
         return $this->pic;
     }
 
+    /**
+     * Setter for pics.
+     *
+     * @param Pic $pic
+     *
+     * @return void
+     */
     public function setPic(Pic $pic): void
     {
         // set the owning side of the relation if necessary
@@ -229,21 +281,45 @@ class Game
         $this->pic = $pic;
     }
 
+    /**
+     * Getter for slug.
+     *
+     * @return string|null
+     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
+    /**
+     * Setter for slug.
+     *
+     * @param string $slug
+     *
+     * @return void
+     */
     public function setSlug(string $slug): void
     {
         $this->slug = $slug;
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author
+     *
+     * @return void
+     */
     public function setAuthor(?User $author): void
     {
         $this->author = $author;

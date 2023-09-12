@@ -1,4 +1,7 @@
 <?php
+/**
+ * Comment fixtures.
+ */
 
 namespace App\DataFixtures;
 
@@ -36,6 +39,9 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
         $this->manager->flush();
     }
 
+    /**
+     * @return string[]
+     */
     public function getDependencies(): array
     {
         return [GameFixtures::class, UserFixtures::class];

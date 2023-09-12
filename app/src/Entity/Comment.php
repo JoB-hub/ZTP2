@@ -1,9 +1,12 @@
 <?php
-
+/**
+ * Comment entity.
+ */
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -24,7 +27,7 @@ class Comment
     private ?int $id = null;
 
     /**
-     * Title.
+     * Description.
      */
     #[ORM\Column(type: 'string', length: 1000)]
     #[Assert\Type('string')]
@@ -35,23 +38,28 @@ class Comment
     /**
      * Created at.
      *
-     * @var \DateTimeImmutable|null
+     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(\DateTimeImmutable::class)]
+    #[Assert\Type(DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?\DateTimeInterface $createdAt = null;
+    private ?DateTimeInterface $createdAt = null;
 
     /**
      * Updated at.
      *
-     * @var \DateTimeImmutable|null
+     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(\DateTimeImmutable::class)]
+    #[Assert\Type(DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?DateTimeInterface $updatedAt = null;
 
+    /**
+     * Game.
+     *
+     * @var Game|null
+     */
     #[ORM\ManyToOne(targetEntity: Game::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Game $game = null;
@@ -65,74 +73,123 @@ class Comment
     #[Assert\Type(User::class)]
     private ?User $author = null;
 
+    /**
+     * Getter for id.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for description.
+     *
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * Setter for description.
+     *
+     * @param string|null $description
+     *
+     * @return void
+     */
     public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    /**
+     * Get createdAt.
+     *
+     * @return DateTimeInterface|null
+     */
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): void
+    /**
+     * Set createdAt.
+     *
+     * @param DateTimeInterface $createdAt
+     *
+     * @return void
+     */
+    public function setCreatedAt(DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    /**
+     * Get updatedAt.
+     *
+     * @return DateTimeInterface|null
+     */
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): void
+    /**
+     * Set updatedAt.
+     *
+     * @param DateTimeInterface $updatedAt
+     *
+     * @return void
+     */
+    public function setUpdatedAt(DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
 
+    /**
+     * Getter for game.
+     *
+     * @return Game|null
+     */
     public function getGame(): ?Game
     {
         return $this->game;
     }
 
-    public function setGame(?Game $game): static
+    /**
+     * Setter for game.
+     *
+     * @param Game|null $game
+     *
+     * @return void
+     */
+    public function setGame(?Game $game): void
     {
         $this->game = $game;
-
-        return $this;
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
-    public function setAuthor(?User $author): static
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author
+     *
+     * @return void
+     */
+    public function setAuthor(?User $author): void
     {
         $this->author = $author;
-
-        return $this;
     }
-
-    //    public function getSlug(): ?string
-    //    {
-    //        return $this->slug;
-    //    }
-    //
-    //    public function setSlug(string $slug): static
-    //    {
-    //        $this->slug = $slug;
-    //
-    //        return $this;
-    //    }
 }

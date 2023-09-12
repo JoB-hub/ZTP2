@@ -1,4 +1,7 @@
 <?php
+/**
+ * Genre fixtures.
+ */
 
 namespace App\DataFixtures;
 

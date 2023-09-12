@@ -1,4 +1,7 @@
 <?php
+/**
+ * Platform entity.
+ */
 
 namespace App\Entity;
 
@@ -32,16 +35,32 @@ class Platform
     #[Assert\Length(min: 2, max: 64)]
     private ?string $name = null;
 
+    /**
+     * Getter for Id.
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for name.
+     *
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * Setter for name.
+     *
+     * @param string $name
+     *
+     * @return void
+     */
     public function setName(string $name): void
     {
         $this->name = $name;

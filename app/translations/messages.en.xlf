@@ -312,11 +312,11 @@
             </trans-unit>
             <trans-unit id="68">
                 <source>title.change_password</source>
-                <target>messages</target>
+                <target>Change password</target>
             </trans-unit>
             <trans-unit id="69">
                 <source>change_button</source>
-                <target>messages</target>
+                <target>Change</target>
             </trans-unit>
             <trans-unit id="70">
                 <source>label.oldPassword</source>
@@ -369,6 +369,10 @@
             <trans-unit id="82">
                 <source>label.choose</source>
                 <target>Choose one of the options</target>
+            </trans-unit>
+            <trans-unit id="83">
+                <source>label.login</source>
+                <target>Log in</target>
             </trans-unit>
         </body>
     </file>

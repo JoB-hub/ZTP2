@@ -1,4 +1,7 @@
 <?php
+/**
+ * Studio entity.
+ */
 
 namespace App\Entity;
 

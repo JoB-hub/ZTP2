@@ -1,4 +1,7 @@
 <?php
+/**
+ * Genre entity.
+ */
 
 namespace App\Entity;
 
@@ -41,26 +44,55 @@ class Genre
     #[Assert\Length(min: 3, max: 1000)]
     private ?string $description = null;
 
+    /**
+     * Getter for id.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for name.
+     *
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * Setter for name.
+     *
+     * @param string $name
+     *
+     * @return void
+     */
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
+    /**
+     * Getter for description.
+     *
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * Setter for description.
+     *
+     * @param string $description
+     *
+     * @return void
+     */
     public function setDescription(string $description): void
     {
         $this->description = $description;

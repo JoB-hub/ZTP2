@@ -370,6 +370,10 @@
                 <source>label.choose</source>
                 <target>Wybierz jedną z opcji</target>
             </trans-unit>
+            <trans-unit id="83">
+                <source>label.login</source>
+                <target>Zaloguj się</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

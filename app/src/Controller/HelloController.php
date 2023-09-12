@@ -18,6 +18,7 @@ class HelloController
      * Index action.
      *
      * @param Request $request
+     *
      * @return Response HTTP response
      */
     #[Route('/hello', name: 'hello_index', methods: 'GET')]
