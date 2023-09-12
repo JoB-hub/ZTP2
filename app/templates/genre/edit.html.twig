@@ -1,9 +1,3 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}
-    {{ 'title.genre_edit'|trans({'%id%': genre.id|default('')}) }}
-{% endblock %}
-
 {% block body %}
     {% include 'default/_form.html.twig' with {
         page_title: 'title.genre_edit'|trans({'%id%': genre.id|default('')}),

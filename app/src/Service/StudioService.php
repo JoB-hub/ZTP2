@@ -6,7 +6,11 @@
 namespace App\Service;
 
 use App\Entity\Studio;
+use App\Repository\GameRepository;
 use App\Repository\StudioRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\Mapping as ORM;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -21,6 +25,12 @@ class StudioService implements StudioServiceInterface
     private StudioRepository $studioRepository;
 
     /**
+     * Game repository.
+     */
+    #[ORM\Column(type: 'string')]
+    private GameRepository $gameRepository;
+
+    /**
      * Paginator.
      */
     private PaginatorInterface $paginator;
@@ -31,9 +41,10 @@ class StudioService implements StudioServiceInterface
      * @param StudioRepository   $studioRepository Studio repository
      * @param PaginatorInterface $paginator        Paginator
      */
-    public function __construct(StudioRepository $studioRepository, PaginatorInterface $paginator)
+    public function __construct(StudioRepository $studioRepository, PaginatorInterface $paginator, GameRepository $gameRepository)
     {
         $this->studioRepository = $studioRepository;
+        $this->gameRepository = $gameRepository;
         $this->paginator = $paginator;
     }
 
@@ -71,5 +82,23 @@ class StudioService implements StudioServiceInterface
     public function delete(Studio $studio): void
     {
         $this->studioRepository->delete($studio);
+    }
+
+    /**
+     * Can Studio be deleted?
+     *
+     * @param Studio $studio Studio entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Studio $studio): bool
+    {
+        try {
+            $result = $this->gameRepository->countByStudio($studio);
+
+            return !($result > 0);
+        } catch (NoResultException|NonUniqueResultException) {
+            return false;
+        }
     }
 }

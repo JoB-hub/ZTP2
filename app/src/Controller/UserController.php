@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\Type\ResetPasswordType;
 use App\Service\UserServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -82,6 +83,7 @@ class UserController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|POST'
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function resetPassword(User $user, Request $request, TranslatorInterface $translator, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(ResetPasswordType::class);
@@ -91,6 +93,7 @@ class UserController extends AbstractController
             $oldPassword = $form->get('oldPassword')->getData();
             if (!$passwordHasher->isPasswordValid($user, $oldPassword)) {
                 $this->addFlash('incorrect', $translator->trans('message.wrong_old_password'));
+
                 return $this->redirectToRoute('user_index');
             }
             $hashedPassword = $passwordHasher->hashPassword($user, $form->get('newPassword')->getData());
@@ -99,8 +102,10 @@ class UserController extends AbstractController
                 'success',
                 $translator->trans('message.edited_successfully')
             );
+
             return $this->redirectToRoute('user_index');
         }
+
         return $this->render('user/change_password.html.twig', ['form' => $form->createView(), 'user' => $user]);
     }
 }

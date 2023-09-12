@@ -84,7 +84,7 @@ class GameType extends AbstractType
                     return $genre->getName();
                 },
                 'label' => 'label.genre',
-                'placeholder' => 'label.none',
+                'placeholder' => '-',
                 'required' => true,
             ]
         );
@@ -97,23 +97,23 @@ class GameType extends AbstractType
                     return $studio->getName();
                 },
                 'label' => 'label.studio',
-                'placeholder' => 'label.none',
+                'placeholder' => '-',
                 'required' => true,
             ]
         );
-        $builder->add(
-            'pictures',
-            TextType::class,
-            [
-                'label' => 'label.pictures',
-                'required' => false,
-                'attr' => ['max_length' => 128],
-            ]
-        );
+//        $builder->add(
+//            'pictures',
+//            TextType::class,
+//            [
+//                'label' => 'label.pictures',
+//                'required' => false,
+//                'attr' => ['max_length' => 128],
+//            ]
+//        );
 
-        $builder->get('pictures')->addModelTransformer(
-            $this->picturesDataTransformer
-        );
+//        $builder->get('pictures')->addModelTransformer(
+//            $this->picturesDataTransformer
+//        );
         $builder->add(
             'platforms',
             TextType::class,

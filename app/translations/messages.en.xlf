@@ -300,7 +300,55 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>message.wrong_old_password</source>
+                <target>Wrong old password</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>message.studio_contains_games</source>
+                <target>Studio contains games</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>action.reset</source>
+                <target>Reset password</target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>title.change_password</source>
                 <target>messages</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>change_button</source>
+                <target>messages</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>label.oldPassword</source>
+                <target>Old password</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>label.newPassword</source>
+                <target>New password</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>label.ztp_project</source>
+                <target>ZTP2 Project</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>label.games</source>
+                <target>Games</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>label.comments</source>
+                <target>Comments</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>label.genres</source>
+                <target>Genres</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>label.studios</source>
+                <target>Studios</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>label.users</source>
+                <target>Users</target>
             </trans-unit>
         </body>
     </file>

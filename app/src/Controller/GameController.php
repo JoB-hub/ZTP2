@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Entity\Pic;
 use App\Form\Type\GameType;
+use App\Service\CommentService;
 use App\Service\GameService;
 use App\Service\GameServiceInterface;
 use App\Service\PicService;
@@ -33,6 +34,11 @@ class GameController extends AbstractController
     private GameService $gameService;
 
     /**
+     * Comment service.
+     */
+    private CommentService $commentService;
+
+    /**
      * Translator.
      */
     private TranslatorInterface $translator;
@@ -49,9 +55,10 @@ class GameController extends AbstractController
      * @param PicServiceInterface  $picService  Pic service
      * @param TranslatorInterface  $translator  Translator
      */
-    public function __construct(GameServiceInterface $gameService, TranslatorInterface $translator, PicServiceInterface $picService)
+    public function __construct(GameServiceInterface $gameService, TranslatorInterface $translator, PicServiceInterface $picService, CommentService $commentService)
     {
         $this->gameService = $gameService;
+        $this->commentService = $commentService;
         $this->translator = $translator;
         $this->picService = $picService;
     }
@@ -102,6 +109,7 @@ class GameController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/create', name: 'game_create', methods: 'GET|POST')]
+    #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
         $user = $this->getUser();
@@ -140,15 +148,13 @@ class GameController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request HTTP request
-     * @param Game     $game    Game entity
-     * @param Pic|null $pic     Pic entity
+     * @param Request $request HTTP request
+     * @param Game    $game    Game entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'game_edit', methods: 'GET|PUT')]
-    #[IsGranted('EDIT', subject: 'game')]
-    public function edit(Request $request, Game $game, ?Pic $pic): Response
+    public function edit(Request $request, Game $game): Response
     {
         $form = $this->createForm(
             GameType::class,
@@ -158,22 +164,12 @@ class GameController extends AbstractController
                 'action' => $this->generateUrl('game_edit', ['id' => $game->getId()]),
             ]
         );
-        if (!$pic) {
-            $pic = new Pic();
-        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /**
              * @var UploadedFile $file
              */
-            $file = $form->get('file')->getData();
-
-            //            $this->picService->update(
-            //                $file,
-            //                $pic,
-            //                $game
-            //            );
 
             $this->gameService->save($game);
 
@@ -203,7 +199,6 @@ class GameController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'game_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
-    #[IsGranted('DELETE', subject: 'game')]
     public function delete(Request $request, Game $game): Response
     {
         $form = $this->createForm(

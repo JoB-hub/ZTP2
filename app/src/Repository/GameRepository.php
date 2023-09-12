@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Comment;
 use App\Entity\Game;
 use App\Entity\Genre;
+use App\Entity\Studio;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -33,7 +34,7 @@ class GameRepository extends ServiceEntityRepository
      *
      * @constant int
      */
-    public const PAGINATOR_ITEMS_PER_PAGE = 5;
+    public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
      * Constructor.
@@ -99,6 +100,27 @@ class GameRepository extends ServiceEntityRepository
         return $qb->select($qb->expr()->countDistinct('game.id'))
             ->where('game.comment = :comment')
             ->setParameter(':comment', $comment)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * Count games by studio.
+     *
+     * @param Studio $studio Genre
+     *
+     * @return int Number of games in studio
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByStudio(Studio $studio): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('game.id'))
+            ->where('game.studio = :studio')
+            ->setParameter(':studio', $studio)
             ->getQuery()
             ->getSingleScalarResult();
     }

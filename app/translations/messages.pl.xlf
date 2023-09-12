@@ -300,7 +300,55 @@
             </trans-unit>
             <trans-unit id="65">
                 <source>message.wrong_old_password</source>
-                <target>messages</target>
+                <target>Wpisano niepoprawne stare hasło</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>message.studio_contains_games</source>
+                <target>Studio zawiera gry</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>action.reset</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>title.change_password</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>change_button</source>
+                <target>Zmień</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>label.oldPassword</source>
+                <target>Stare hasło</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>label.newPassword</source>
+                <target>Nowe hasło</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>label.ztp_project</source>
+                <target>Projekt ZTP2</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>label.games</source>
+                <target>Gry</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>label.comments</source>
+                <target>Komentarze</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>label.genres</source>
+                <target>Gatunki</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>label.studios</source>
+                <target>Studia</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>label.users</source>
+                <target>Użytkownicy</target>
             </trans-unit>
         </body>
     </file>

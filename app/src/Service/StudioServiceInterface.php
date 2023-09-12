@@ -30,4 +30,13 @@ interface StudioServiceInterface
     public function save(Studio $studio): void;
 
     public function delete(Studio $studio): void;
+
+    /**
+     * Can Studio be deleted?
+     *
+     * @param Studio $studio Studio entity
+     *
+     * @return bool Result
+     */
+    public function canBeDeleted(Studio $studio): bool;
 }

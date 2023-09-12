@@ -6,6 +6,9 @@
 
 {% block body %}
     <h1>{{ 'title.platform_list'|trans }}</h1>
+    <a href="{{ url('platform_create') }}" title="{{ 'title.platform_create'|trans }}">
+        {{ 'title.platform_create'|trans }}
+    </a>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">

@@ -40,8 +40,6 @@ class CommentVoter extends Voter
 
     /**
      * Security helper.
-     *
-     * @var Security
      */
     private Security $security;
 
@@ -89,8 +87,6 @@ class CommentVoter extends Voter
         switch ($attribute) {
             case self::EDIT:
                 return $this->canEdit($subject, $user);
-            case self::VIEW:
-                return $this->canView($subject, $user);
             case self::DELETE:
                 return $this->canDelete($subject, $user);
         }
@@ -101,25 +97,12 @@ class CommentVoter extends Voter
     /**
      * Checks if user can edit comment.
      *
-     * @param Comment $comment Comment entity
-     * @param User $user User
+     * @param Comment       $comment Comment entity
+     * @param UserInterface $user    User
      *
      * @return bool Result
      */
-    private function canEdit(Comment $comment, User $user): bool
-    {
-        return $comment->getAuthor() === $user;
-    }
-
-    /**
-     * Checks if user can view comment.
-     *
-     * @param Comment $comment Comment entity
-     * @param User $user User
-     *
-     * @return bool Result
-     */
-    private function canView(Comment $comment, User $user): bool
+    private function canEdit(Comment $comment, UserInterface $user): bool
     {
         return $comment->getAuthor() === $user;
     }
@@ -128,12 +111,12 @@ class CommentVoter extends Voter
      * Checks if user can delete comment.
      *
      * @param Comment $comment Comment entity
-     * @param User $user User
+     * @param User    $user    User
      *
      * @return bool Result
      */
-    private function canDelete(Comment $comment, User $user): bool
+    private function canDelete(Comment $comment, UserInterface $user): bool
     {
-        return $comment->getAuthor() === $user;
+        return $comment->getAuthor() === $user || $this->security->isGranted('ROLE_ADMIN');
     }
 }

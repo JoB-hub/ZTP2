@@ -65,7 +65,7 @@ class CommentController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}', name: 'comment_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET', )]
+    #[Route('/{id}', name: 'comment_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
     public function show(Comment $comment): Response
     {
         return $this->render('comment/show.html.twig', ['comment' => $comment]);
@@ -120,14 +120,6 @@ class CommentController extends AbstractController
     #[IsGranted('EDIT', subject: 'comment')]
     public function edit(Request $request, Comment $comment): Response
     {
-//        if ($comment->getUser() !== $this->getUser()) {
-//            $this->addFlash(
-//                'warning',
-//                $this->translator->trans('message.cannot_edit_others_comments')
-//            );
-//
-//            return $this->redirectToRoute('comment_index');
-//        }
         $form = $this->createForm(
             CommentType::class,
             $comment,
@@ -170,14 +162,6 @@ class CommentController extends AbstractController
     #[IsGranted('DELETE', subject: 'comment')]
     public function delete(Request $request, Comment $comment): Response
     {
-//        if ($comment->getUser() !== $this->getUser()) {
-//            $this->addFlash(
-//                'warning',
-//                $this->translator->trans('message.cannot_delete_others_comments')
-//            );
-//
-//            return $this->redirectToRoute('comment_index');
-//        }
         $form = $this->createForm(
             FormType::class,
             $comment,

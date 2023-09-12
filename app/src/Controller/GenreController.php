@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\Genre;
 use App\Form\Type\GenreType;
 use App\Service\GenreServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -75,10 +76,7 @@ class GenreController extends AbstractController
     )]
     public function show(Genre $genre): Response
     {
-        return $this->render(
-            'genre/show.html.twig',
-            ['genre' => $genre]
-        );
+        return $this->render('genre/show.html.twig', ['genre' => $genre]);
     }
 
     /**
@@ -93,6 +91,7 @@ class GenreController extends AbstractController
         name: 'genre_create',
         methods: 'GET|POST',
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
         $genre = new Genre();
@@ -125,6 +124,7 @@ class GenreController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'genre_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Genre $genre): Response
     {
         $form = $this->createForm(
@@ -166,6 +166,7 @@ class GenreController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'genre_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Genre $genre): Response
     {
         if (!$this->genreService->canBeDeleted($genre)) {

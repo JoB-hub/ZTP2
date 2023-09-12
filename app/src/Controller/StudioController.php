@@ -34,12 +34,12 @@ class StudioController extends AbstractController
     /**
      * Constructor.
      *
-     * @param StudioServiceInterface $studioService Studio service
-     * @param TranslatorInterface    $translator    Translator
+     * @param StudioServiceInterface $gameService Studio service
+     * @param TranslatorInterface    $translator  Translator
      */
-    public function __construct(StudioServiceInterface $studioService, TranslatorInterface $translator)
+    public function __construct(StudioServiceInterface $gameService, TranslatorInterface $translator)
     {
-        $this->studioService = $studioService;
+        $this->studioService = $gameService;
         $this->translator = $translator;
     }
 
@@ -63,7 +63,7 @@ class StudioController extends AbstractController
     /**
      * Show action.
      *
-     * @param Studio $studio Studio
+     * @param Studio $studio Studio entity
      *
      * @return Response HTTP response
      */
@@ -71,7 +71,7 @@ class StudioController extends AbstractController
         '/{id}',
         name: 'studio_show',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET'
+        methods: 'GET',
     )]
     public function show(Studio $studio): Response
     {
@@ -165,10 +165,23 @@ class StudioController extends AbstractController
     #[Route('/{id}/delete', name: 'studio_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Studio $studio): Response
     {
-        $form = $this->createForm(FormType::class, $studio, [
-            'method' => 'DELETE',
-            'action' => $this->generateUrl('studio_delete', ['id' => $studio->getId()]),
-        ]);
+        if (!$this->studioService->canBeDeleted($studio)) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.studio_contains_games')
+            );
+
+            return $this->redirectToRoute('studio_index');
+        }
+
+        $form = $this->createForm(
+            FormType::class,
+            $studio,
+            [
+                'method' => 'DELETE',
+                'action' => $this->generateUrl('studio_delete', ['id' => $studio->getId()]),
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

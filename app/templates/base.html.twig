@@ -10,9 +10,53 @@
                 crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     {% endblock %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+        }
+    </style>
 </head>
 <body>
-
+<header>
+    <h1>{{ 'label.ztp_project'|trans }}</h1>
+    <nav>
+        <a href="{{ url('game_index') }}" title="{{ 'label.games'|trans }}">
+            {{ 'label.games'|trans }}
+        </a>
+        <a href="{{ url('comment_index') }}" title="{{ 'label.comments'|trans }}">
+            {{ 'label.comments'|trans }}
+        </a>
+        <a href="{{ url('genre_index') }}" title="{{ 'label.genres'|trans }}">
+            {{ 'label.genres'|trans }}
+        </a>
+        <a href="{{ url('platform_index') }}" title="{{ 'label.platforms'|trans }}">
+            {{ 'label.platforms'|trans }}
+        </a>
+        <a href="{{ url('studio_index') }}" title="{{ 'label.studios'|trans }}">
+            {{ 'label.studios'|trans }}
+        </a>
+        <a href="{{ url('user_index') }}" title="{{ 'label.users'|trans }}">
+            {{ 'label.users'|trans }}
+        </a>
+    </nav>
+</header>
 <div class="container-fluid">
     {% include 'default/_flash_messages.html.twig' %}
     {% block body %}{% endblock %}

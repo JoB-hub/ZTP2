@@ -67,8 +67,8 @@ class UserRepository extends ServiceEntityRepository
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      *
-     * @param PasswordAuthenticatedUserInterface $user              User
-     * @param string                             $newPassword       Password
+     * @param PasswordAuthenticatedUserInterface $user        User
+     * @param string                             $newPassword Password
      */
     public function changePassword(PasswordAuthenticatedUserInterface $user, string $newPassword): void
     {
@@ -78,7 +78,6 @@ class UserRepository extends ServiceEntityRepository
         $user->setPassword($newPassword);
         $this->save($user, true);
     }
-
 
     /**
      * Save user.
