@@ -1,23 +1,19 @@
 <?php
 /**
- * Registration type.
+ * ResetPassword type.
  */
 
 namespace App\Form\Type;
 
-use App\Entity\User;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class RegistrationType.
+ * Class ResetPasswordType.
  */
-class RegistrationType extends AbstractType
+class ResetPasswordType extends AbstractType
 {
     /**
      * Builds the form.
@@ -33,30 +29,21 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(
-            'email',
-            EmailType::class,
-            [
-                'label' => 'label.email',
-                'required' => true,
-                'attr' => ['max_length' => 64],
-            ]
-        );
-        $builder->add(
-            'nickname',
-            TextType::class,
-            [
-                'label' => 'label.nickname',
-                'required' => true,
-                'attr' => ['max_length' => 64],
-            ]
-        );
-        $builder->add(
-            'password',
+            'oldPassword',
             PasswordType::class,
             [
-                'label' => 'label.password',
+                'label' => 'label.oldPassword',
                 'required' => true,
-                'attr' => ['max_length' => 255],
+                'attr' => ['max_length' => 64],
+            ]
+        );
+        $builder->add(
+            'newPassword',
+            PasswordType::class,
+            [
+                'label' => 'label.newPassword',
+                'required' => true,
+                'attr' => ['max_length' => 64],
             ]
         );
     }
@@ -68,16 +55,7 @@ class RegistrationType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'constraints' => [
-                new UniqueEntity(
-                    [
-                        'entityClass' => User::class,
-                        'fields' => 'email',
-                    ]
-                ),
-            ],
-        ]);
+        $resolver->setDefaults([]);
     }
 
     /**
@@ -90,6 +68,6 @@ class RegistrationType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'register';
+        return 'reset';
     }
 }

@@ -298,6 +298,10 @@
                 <source>label.password</source>
                 <target>Hasło</target>
             </trans-unit>
+            <trans-unit id="65">
+                <source>message.wrong_old_password</source>
+                <target>messages</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

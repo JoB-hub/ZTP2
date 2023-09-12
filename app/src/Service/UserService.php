@@ -5,6 +5,7 @@
 
 namespace App\Service;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -50,5 +51,26 @@ class UserService implements UserServiceInterface
             $page,
             UserRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+
+    /**
+     * Change password.
+     *
+     * @param User   $user     User
+     * @param string $password Password
+     */
+    public function changePassword(User $user, string $password): void
+    {
+        $this->userRepository->changePassword($user, $password);
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param User $user User entity
+     */
+    public function save(User $user): void
+    {
+        $this->userRepository->save($user);
     }
 }

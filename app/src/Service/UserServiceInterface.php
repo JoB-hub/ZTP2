@@ -5,6 +5,7 @@
 
 namespace App\Service;
 
+use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
@@ -20,4 +21,14 @@ interface UserServiceInterface
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page): PaginationInterface;
+
+    /**
+     * Change password.
+     *
+     * @param User   $user     User
+     * @param string $password Password
+     */
+    public function changePassword(User $user, string $password): void;
+
+    public function save(User $user): void;
 }
