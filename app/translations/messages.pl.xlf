@@ -354,7 +354,22 @@
                 <source>action_register</source>
                 <target>Zarejestruj się</target>
             </trans-unit>
-
+            <trans-unit id="79">
+                <source>title.index</source>
+                <target>Indeks</target>
+            </trans-unit>
+            <trans-unit id="80">
+                <source>text.index</source>
+                <target>Tekst indeks</target>
+            </trans-unit>
+            <trans-unit id="81">
+                <source>label.pic</source>
+                <target>Okładka</target>
+            </trans-unit>
+            <trans-unit id="82">
+                <source>label.choose</source>
+                <target>Wybierz jedną z opcji</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

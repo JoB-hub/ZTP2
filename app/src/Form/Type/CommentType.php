@@ -40,7 +40,7 @@ class CommentType extends AbstractType
                     return $game->getTitle();
                 },
                 'label' => 'label.game',
-                'placeholder' => 'label.none',
+                'placeholder' => 'label.choose',
                 'required' => true,
             ]
         );

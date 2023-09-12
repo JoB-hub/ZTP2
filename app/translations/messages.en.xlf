@@ -354,6 +354,22 @@
                 <source>action_register</source>
                 <target>Register</target>
             </trans-unit>
+            <trans-unit id="79">
+                <source>title.index</source>
+                <target>Index</target>
+            </trans-unit>
+            <trans-unit id="80">
+                <source>text.index</source>
+                <target>Text Index</target>
+            </trans-unit>
+            <trans-unit id="81">
+                <source>label.pic</source>
+                <target>Cover</target>
+            </trans-unit>
+            <trans-unit id="82">
+                <source>label.choose</source>
+                <target>Choose one of the options</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
