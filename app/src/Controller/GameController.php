@@ -12,6 +12,7 @@ use App\Service\GameService;
 use App\Service\GameServiceInterface;
 use App\Service\PicService;
 use App\Service\PicServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,7 +46,7 @@ class GameController extends AbstractController
      * Constructor.
      *
      * @param GameServiceInterface $gameService Game service
-     * @param PicServiceInterface $picService Pic service
+     * @param PicServiceInterface  $picService  Pic service
      * @param TranslatorInterface  $translator  Translator
      */
     public function __construct(GameServiceInterface $gameService, TranslatorInterface $translator, PicServiceInterface $picService)
@@ -54,6 +55,7 @@ class GameController extends AbstractController
         $this->translator = $translator;
         $this->picService = $picService;
     }
+
     /**
      * Index action.
      *
@@ -138,12 +140,14 @@ class GameController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request $request HTTP request
-     * @param Game    $game    Game entity
-     * @param Pic|null $pic    Pic entity
+     * @param Request  $request HTTP request
+     * @param Game     $game    Game entity
+     * @param Pic|null $pic     Pic entity
+     *
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'game_edit', methods: 'GET|PUT')]
+    #[IsGranted('EDIT', subject: 'game')]
     public function edit(Request $request, Game $game, ?Pic $pic): Response
     {
         $form = $this->createForm(
@@ -165,11 +169,11 @@ class GameController extends AbstractController
              */
             $file = $form->get('file')->getData();
 
-//            $this->picService->update(
-//                $file,
-//                $pic,
-//                $game
-//            );
+            //            $this->picService->update(
+            //                $file,
+            //                $pic,
+            //                $game
+            //            );
 
             $this->gameService->save($game);
 
@@ -199,6 +203,7 @@ class GameController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'game_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('DELETE', subject: 'game')]
     public function delete(Request $request, Game $game): Response
     {
         $form = $this->createForm(

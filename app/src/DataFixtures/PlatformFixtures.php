@@ -1,15 +1,16 @@
 <?php
+
 //
-//namespace App\DataFixtures;
+// namespace App\DataFixtures;
 //
-//use App\Entity\Platform;
-//use Faker\Factory;
+// use App\Entity\Platform;
+// use Faker\Factory;
 //
-///**
+// /**
 // * Class PlatformFixtures.
 // */
-//class PlatformFixtures extends AbstractBaseFixtures
-//{
+// class PlatformFixtures extends AbstractBaseFixtures
+// {
 //    /**
 //     * Load.
 //     */
@@ -23,9 +24,7 @@
 //        }
 //        $this->manager->flush();
 //    }
-//}
-
-
+// }
 
 namespace App\DataFixtures;
 
@@ -46,8 +45,7 @@ class PlatformFixtures extends AbstractBaseFixtures
             $platform->setName($this->faker->word);
 
             return $platform;
-        }
-        );
+        });
         $this->manager->flush();
     }
 }

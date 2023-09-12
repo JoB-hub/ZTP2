@@ -8,13 +8,13 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Form\Type\CommentType;
 use App\Service\CommentServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class CommentController.
@@ -29,8 +29,6 @@ class CommentController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -63,16 +61,11 @@ class CommentController extends AbstractController
     /**
      * Show action.
      *
-     * @param Comment $comment Comment
+     * @param Comment $comment Comment entity
      *
      * @return Response HTTP response
      */
-    #[Route(
-        '/{id}',
-        name: 'comment_show',
-        requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET'
-    )]
+    #[Route('/{id}', name: 'comment_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET', )]
     public function show(Comment $comment): Response
     {
         return $this->render('comment/show.html.twig', ['comment' => $comment]);
@@ -94,7 +87,7 @@ class CommentController extends AbstractController
     {
         $user = $this->getUser();
         $comment = new Comment();
-        $comment->setUser($user);
+        $comment->setAuthor($user);
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
@@ -118,14 +111,23 @@ class CommentController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
+     * @param Request $request HTTP request
      * @param Comment $comment Comment entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'comment_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('EDIT', subject: 'comment')]
     public function edit(Request $request, Comment $comment): Response
     {
+//        if ($comment->getUser() !== $this->getUser()) {
+//            $this->addFlash(
+//                'warning',
+//                $this->translator->trans('message.cannot_edit_others_comments')
+//            );
+//
+//            return $this->redirectToRoute('comment_index');
+//        }
         $form = $this->createForm(
             CommentType::class,
             $comment,
@@ -159,14 +161,23 @@ class CommentController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
+     * @param Request $request HTTP request
      * @param Comment $comment Comment entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('DELETE', subject: 'comment')]
     public function delete(Request $request, Comment $comment): Response
     {
+//        if ($comment->getUser() !== $this->getUser()) {
+//            $this->addFlash(
+//                'warning',
+//                $this->translator->trans('message.cannot_delete_others_comments')
+//            );
+//
+//            return $this->redirectToRoute('comment_index');
+//        }
         $form = $this->createForm(
             FormType::class,
             $comment,

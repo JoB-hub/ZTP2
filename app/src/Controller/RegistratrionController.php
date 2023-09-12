@@ -31,7 +31,8 @@ class RegistratrionController extends AbstractController
     {
         $this->translator = $translator;
     }
-    #[Route('/register', name:'app_register')]
+
+    #[Route('/register', name: 'app_register')]
     public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, LoginFormAuthenticator $authenticator, UserAuthenticatorInterface $userAuthenticator): Response
     {
         $user = new User();
@@ -49,6 +50,7 @@ class RegistratrionController extends AbstractController
 
             return $userAuthenticator->authenticateUser($user, $authenticator, $request);
         }
+
         return $this->render('registration/register.html.twig', ['registrationForm' => $form->createView()]);
     }
 }

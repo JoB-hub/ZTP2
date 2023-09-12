@@ -17,8 +17,6 @@ class Genre
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -27,8 +25,6 @@ class Genre
 
     /**
      * Name.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -38,8 +34,6 @@ class Genre
 
     /**
      * Description.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 1000)]
     #[Assert\Type('string')]

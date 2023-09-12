@@ -3,8 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Comment;
-use App\Entity\Game;
-use DateTimeImmutable;
 use Faker\Factory;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
@@ -25,14 +23,14 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
         for ($i = 0; $i < 10; ++$i) {
             $comment = new Comment();
             $comment->setCreatedAt(
-                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
+                \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );
             $comment->setUpdatedAt(
-                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
+                \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );
             $comment->setDescription($this->faker->sentence);
             $comment->setGame($this->getRandomReference('games'));
-            $comment->setUser($this->getRandomReference('users'));
+            $comment->setAuthor($this->getRandomReference('users'));
             $this->manager->persist($comment);
         }
         $this->manager->flush();

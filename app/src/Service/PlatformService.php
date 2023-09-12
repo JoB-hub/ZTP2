@@ -28,8 +28,8 @@ class PlatformService implements PlatformServiceInterface
     /**
      * Constructor.
      *
-     * @param PlatformRepository  $platformRepository Platform repository
-     * @param PaginatorInterface $paginator         Paginator
+     * @param PlatformRepository $platformRepository Platform repository
+     * @param PaginatorInterface $paginator          Paginator
      */
     public function __construct(PlatformRepository $platformRepository, PaginatorInterface $paginator)
     {

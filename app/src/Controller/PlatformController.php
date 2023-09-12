@@ -28,11 +28,8 @@ class PlatformController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
-
 
     /**
      * Constructor.
@@ -165,7 +162,7 @@ class PlatformController extends AbstractController
     #[Route('/{id}/delete', name: 'platform_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Platform $platform): Response
     {
-        if(!$this->platformService->canBeDeleted($platform)) {
+        if (!$this->platformService->canBeDeleted($platform)) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.platform_contains_games')

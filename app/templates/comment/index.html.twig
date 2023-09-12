@@ -20,7 +20,7 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'comment.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.game'|trans, 'game.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.user'|trans, 'user.nickname') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.author'|trans, 'author.nickname') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'comment.description') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.createdAt'|trans, 'comment.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.updatedAt'|trans, 'comment.updatedAt') }}</th>
@@ -32,7 +32,7 @@
                 <tr>
                     <td>{{ comment.id }}</td>
                     <td>{{ comment.game.title }}</td>
-                    <td>{{ comment.user.nickname }}</td>
+                    <td>{{ comment.author.nickname }}</td>
                     <td>{{ comment.description }}</td>
                     <td>{{ comment.createdAt|format_date('long') }}</td>
                     <td>{{ comment.updatedAt|format_date('long') }}</td>>
@@ -40,12 +40,16 @@
                         <a href="{{ url('comment_show', {id: comment.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
                         </a>
+                        {% if is_granted('EDIT', comment) %}
                         <a href="{{ url('comment_edit', {id: comment.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
+                        {% endif %}
+                        {% if is_granted('DELETE', comment) %}
                         <a href="{{ url('comment_delete', {id: comment.id}) }}" title="{{ 'action.delete'|trans }}">
                             {{ 'action.delete'|trans }}
                         </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

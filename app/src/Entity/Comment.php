@@ -7,9 +7,7 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-use phpDocumentor\Reflection\DocBlock\Description;
 
 /**
  * Class Comment.
@@ -20,8 +18,6 @@ class Comment
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -30,8 +26,6 @@ class Comment
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 1000)]
     #[Assert\Type('string')]
@@ -64,15 +58,13 @@ class Comment
     private ?Game $game = null;
 
     /**
-     * User.
-     *
-     * @var User|null
+     * Author.
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
-    private ?User $user = null;
+    private ?User $author = null;
 
     public function getId(): ?int
     {
@@ -121,27 +113,27 @@ class Comment
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getAuthor(): ?User
     {
-        return $this->user;
+        return $this->author;
     }
 
-    public function setUser(?User $user): static
+    public function setAuthor(?User $author): static
     {
-        $this->user = $user;
+        $this->author = $author;
 
         return $this;
     }
 
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): static
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
+//    public function getSlug(): ?string
+//    {
+//        return $this->slug;
+//    }
+//
+//    public function setSlug(string $slug): static
+//    {
+//        $this->slug = $slug;
+//
+//        return $this;
+//    }
 }

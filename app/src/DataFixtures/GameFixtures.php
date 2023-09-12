@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use App\Entity\Game;
 use App\Entity\Platform;
 use App\Entity\User;
-use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -30,7 +29,7 @@ class GameFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             $game->setTitle($this->faker->word);
             $game->setDescription($this->faker->sentence);
             $game->setCreatedAt(
-                DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
+                \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days'))
             );
             $game->setGenre($this->getRandomReference('genres'));
             $game->setStudio($this->getRandomReference('studios'));

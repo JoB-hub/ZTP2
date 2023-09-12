@@ -36,12 +36,12 @@ interface CommentServiceInterface
      */
     public function delete(Comment $comment): void;
 
-//    /**
-//     * Can Comment be deleted?
-//     *
-//     * @param Comment $comment Comment entity
-//     *
-//     * @return bool Result
-//     */
-//    public function canBeDeleted(Comment $comment): bool;
+    //    /**
+    //     * Can Comment be deleted?
+    //     *
+    //     * @param Comment $comment Comment entity
+    //     *
+    //     * @return bool Result
+    //     */
+    //    public function canBeDeleted(Comment $comment): bool;
 }

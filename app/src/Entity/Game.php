@@ -37,8 +37,6 @@ class Game
 
     /**
      * Genre.
-     *
-     * @var Genre|null
      */
     #[ORM\ManyToOne(targetEntity: Genre::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -46,8 +44,6 @@ class Game
 
     /**
      * Studio.
-     *
-     * @var Studio|null
      */
     #[ORM\ManyToOne(targetEntity: Studio::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -78,7 +74,6 @@ class Game
 
     /**
      * Slug.
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Gedmo\Slug(fields: ['title'])]
@@ -86,8 +81,6 @@ class Game
 
     /**
      * Author.
-     *
-     * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]

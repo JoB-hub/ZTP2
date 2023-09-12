@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Comment;
 use App\Entity\Game;
 use App\Entity\Genre;
-use App\Entity\Platform;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;

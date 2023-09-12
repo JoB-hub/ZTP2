@@ -28,8 +28,6 @@ class GenreController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -52,7 +50,6 @@ class GenreController extends AbstractController
      *
      * @return Response HTTP response
      */
-
     #[Route(name: 'genre_index', methods: 'GET')]
     public function index(Request $request): Response
     {
@@ -163,15 +160,15 @@ class GenreController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param Genre $genre Genre entity
+     * @param Request $request HTTP request
+     * @param Genre   $genre   Genre entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'genre_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Genre $genre): Response
     {
-        if(!$this->genreService->canBeDeleted($genre)) {
+        if (!$this->genreService->canBeDeleted($genre)) {
             $this->addFlash(
                 'warning',
                 $this->translator->trans('message.genre_contains_games')

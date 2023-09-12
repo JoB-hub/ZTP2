@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Genre;
-use Faker\Factory;
 
 /**
  * Class GenreFixtures.

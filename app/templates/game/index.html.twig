@@ -45,12 +45,16 @@
                         <a href="{{ url('game_show', {id: game.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
                         </a>
+                        {% if is_granted('EDIT', game) %}
                         <a href="{{ url('game_edit', {id: game.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
+                        {% endif %}
+                        {% if is_granted('DELETE', game) %}
                         <a href="{{ url('game_delete', {id: game.id}) }}" title="{{ 'action.delete'|trans }}">
                             {{ 'action.delete'|trans }}
                         </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

@@ -40,7 +40,7 @@ class PicService implements PicServiceInterface
      * Constructor.
      *
      * @param string                     $targetDirectory   Target directory
-     * @param PicRepository           $picRepository  Pic repository
+     * @param PicRepository              $picRepository     Pic repository
      * @param FileUploadServiceInterface $fileUploadService File upload service
      * @param Filesystem                 $filesystem        Filesystem component
      */
@@ -56,7 +56,7 @@ class PicService implements PicServiceInterface
      * Update pic.
      *
      * @param UploadedFile $uploadedFile Uploaded file
-     * @param Pic       $pic       Pic entity
+     * @param Pic          $pic          Pic entity
      * @param Game         $game         Game entity
      */
     public function update(UploadedFile $uploadedFile, Pic $pic, Game $game): void

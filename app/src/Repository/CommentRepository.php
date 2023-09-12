@@ -3,9 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Comment;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -55,10 +54,10 @@ class CommentRepository extends ServiceEntityRepository
             ->select(
                 'partial comment.{id, description, createdAt, updatedAt}',
                 'partial game.{id, title}',
-                'partial user.{id, nickname, email, roles, password}'
+                'partial author.{id, nickname, email, roles, password}'
             )
             ->join('comment.game', 'game')
-            ->join('comment.user', 'user')
+            ->join('comment.author', 'author')
             ->orderBy('comment.updatedAt', 'ASC');
     }
 
@@ -73,6 +72,24 @@ class CommentRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('comment');
     }
+
+    /**
+     * Query tasks by author.
+     *
+     * @param User $user User entity
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByUser(User $user): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll();
+
+        $queryBuilder->andWhere('comment.user = :user')
+            ->setParameter('user', $user);
+
+        return $queryBuilder;
+    }
+
     /**
      * Save entity.
      *

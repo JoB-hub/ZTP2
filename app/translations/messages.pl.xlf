@@ -287,12 +287,16 @@
                 <target>Okładka</target>
             </trans-unit>
             <trans-unit id="62">
-                <source>label.pic</source>
-                <target>messages</target>
-            </trans-unit>
-            <trans-unit id="63">
                 <source>title.game_create</source>
                 <target>Stwórz nową grę</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>label.sign_in</source>
+                <target>Zaloguj się</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>label.password</source>
+                <target>Hasło</target>
             </trans-unit>
         </body>
     </file>

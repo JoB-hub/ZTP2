@@ -73,10 +73,10 @@ class RegistrationType extends AbstractType
                 new UniqueEntity(
                     [
                         'entityClass' => User::class,
-                        'fields' => 'email'
+                        'fields' => 'email',
                     ]
-                )
-            ]
+                ),
+            ],
         ]);
     }
 

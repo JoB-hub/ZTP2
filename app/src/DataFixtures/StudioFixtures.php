@@ -6,7 +6,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Studio;
-use DateTimeImmutable;
 
 /**
  * Class StudioFixtures.
@@ -28,8 +27,7 @@ class StudioFixtures extends AbstractBaseFixtures
             $studio->setName($this->faker->unique()->word);
 
             return $studio;
-        }
-        );
+        });
         $this->manager->flush();
     }
 }

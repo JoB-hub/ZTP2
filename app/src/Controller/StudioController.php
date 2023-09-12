@@ -28,8 +28,6 @@ class StudioController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -44,7 +42,6 @@ class StudioController extends AbstractController
         $this->studioService = $studioService;
         $this->translator = $translator;
     }
-
 
     /**
      * Index action.
@@ -80,7 +77,6 @@ class StudioController extends AbstractController
     {
         return $this->render('studio/show.html.twig', ['studio' => $studio]);
     }
-
 
     /**
      * Create action.

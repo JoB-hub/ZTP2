@@ -25,15 +25,11 @@ class GameType extends AbstractType
 {
     /**
      * Platforms data transformer.
-     *
-     * @var PlatformsDataTransformer
      */
     private PlatformsDataTransformer $platformsDataTransformer;
 
     /**
      * Pictures data transformer.
-     *
-     * @var PicturesDataTransformer
      */
     private PicturesDataTransformer $picturesDataTransformer;
 
@@ -46,7 +42,6 @@ class GameType extends AbstractType
     {
         $this->platformsDataTransformer = $platformsDataTransformer;
         $this->picturesDataTransformer = $picturesDataTransformer;
-
     }
 
     /**

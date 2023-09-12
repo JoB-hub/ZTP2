@@ -7,7 +7,6 @@ namespace App\Entity;
 
 use App\Repository\PicRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -21,8 +20,6 @@ class Pic
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -31,8 +28,6 @@ class Pic
 
     /**
      * Game.
-     *
-     * @var Game|null
      */
     #[ORM\OneToOne(inversedBy: 'pic', targetEntity: Game::class, cascade: ['persist', 'remove'], fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
@@ -41,8 +36,6 @@ class Pic
 
     /**
      * Filename.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 191)]
     #[Assert\Type('string')]

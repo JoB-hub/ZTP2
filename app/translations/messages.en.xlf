@@ -287,14 +287,17 @@
                 <target>Cover</target>
             </trans-unit>
             <trans-unit id="62">
-                <source>label.pic</source>
-                <target>messages</target>
-            </trans-unit>
-            <trans-unit id="63">
                 <source>title.game_create</source>
                 <target>Create a new game</target>
             </trans-unit>
-
+            <trans-unit id="63">
+                <source>label.sign_in</source>
+                <target>Sign in</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>label.password</source>
+                <target>Password</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

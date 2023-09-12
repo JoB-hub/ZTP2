@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.genre_create'|trans }}
+    {{ 'title.game_create'|trans }}
 {% endblock %}
 
 {% block body %}
     {% include 'default/_form.html.twig' with {
-        page_title: 'title.genre_create'|trans,
+        page_title: 'title.game_create'|trans,
         form: form,
         submit_label: 'action.save'|trans,
-        back_to_list_path: 'genre_index',
+        back_to_list_path: 'game_index',
     } %}
 {% endblock %}
