@@ -56,17 +56,6 @@ class PictureRepository extends ServiceEntityRepository
             ->orderBy('picture.id', 'DESC');
     }
 
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('picture');
-    }
 
     /**
      * Save entity.
@@ -88,5 +77,17 @@ class PictureRepository extends ServiceEntityRepository
     {
         $this->_em->remove($picture);
         $this->_em->flush();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('picture');
     }
 }

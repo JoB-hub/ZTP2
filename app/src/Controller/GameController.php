@@ -51,9 +51,10 @@ class GameController extends AbstractController
     /**
      * Constructor.
      *
-     * @param GameServiceInterface $gameService Game service
-     * @param PicServiceInterface  $picService  Pic service
-     * @param TranslatorInterface  $translator  Translator
+     * @param GameServiceInterface $gameService    Game service
+     * @param TranslatorInterface  $translator     Translator
+     * @param PicServiceInterface  $picService     Pic service
+     * @param CommentService       $commentService Comment service
      */
     public function __construct(GameServiceInterface $gameService, TranslatorInterface $translator, PicServiceInterface $picService, CommentService $commentService)
     {

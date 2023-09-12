@@ -29,6 +29,8 @@ class UserController extends AbstractController
 
     /**
      * Constructor.
+     *
+     * @param UserServiceInterface $userService
      */
     public function __construct(UserServiceInterface $userService)
     {
@@ -73,7 +75,10 @@ class UserController extends AbstractController
     /**
      * Reset password action.
      *
-     * @param User $user User
+     * @param User                        $user           User
+     * @param Request                     $request        Request
+     * @param TranslatorInterface         $translator     Translator
+     * @param UserPasswordHasherInterface $passwordHasher PasswordHasher
      *
      * @return Response HTTP response
      */

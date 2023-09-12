@@ -40,6 +40,7 @@ class StudioService implements StudioServiceInterface
      *
      * @param StudioRepository   $studioRepository Studio repository
      * @param PaginatorInterface $paginator        Paginator
+     * @param GameRepository     $gameRepository   Game repository
      */
     public function __construct(StudioRepository $studioRepository, PaginatorInterface $paginator, GameRepository $gameRepository)
     {

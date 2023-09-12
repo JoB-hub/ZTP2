@@ -30,5 +30,12 @@ interface UserServiceInterface
      */
     public function changePassword(User $user, string $password): void;
 
+    /**
+     * Save user.
+     *
+     * @param User $user
+     *
+     * @return void
+     */
     public function save(User $user): void;
 }

@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Studio class.
+ */
 #[ORM\Entity(repositoryClass: StudioRepository::class)]
 #[ORM\Table(name: 'studios')]
 class Studio
@@ -30,16 +33,33 @@ class Studio
     #[Assert\NotBlank]
     private ?string $name = null;
 
+    /**
+     * Getter for id.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for name.
+     *
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * Setter for name.
+     *
+     * @param string $name
+     *
+     * @return void
+     */
     public function setName(string $name): void
     {
         $this->name = $name;

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Pic repository.
+ */
 
 namespace App\Repository;
 
@@ -16,6 +19,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PicRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Pic::class);

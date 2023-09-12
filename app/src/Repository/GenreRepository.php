@@ -1,4 +1,7 @@
 <?php
+/**
+ * Genre repository.
+ */
 
 namespace App\Repository;
 
@@ -61,6 +64,17 @@ class GenreRepository extends ServiceEntityRepository
     }
 
     /**
+     * Delete entity.
+     *
+     * @param Genre $genre Genre entity
+     */
+    public function delete(Genre $genre): void
+    {
+        $this->_em->remove($genre);
+        $this->_em->flush();
+    }
+
+    /**
      * Get or create new query builder.
      *
      * @param QueryBuilder|null $queryBuilder Query builder
@@ -70,16 +84,5 @@ class GenreRepository extends ServiceEntityRepository
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
         return $queryBuilder ?? $this->createQueryBuilder('genre');
-    }
-
-    /**
-     * Delete entity.
-     *
-     * @param Genre $genre Genre entity
-     */
-    public function delete(Genre $genre): void
-    {
-        $this->_em->remove($genre);
-        $this->_em->flush();
     }
 }

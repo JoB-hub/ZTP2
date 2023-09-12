@@ -27,11 +27,27 @@ class RegistratrionController extends AbstractController
      */
     private TranslatorInterface $translator;
 
+    /**
+     * Constructor.
+     *
+     * @param TranslatorInterface $translator
+     */
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
 
+    /**
+     * Register.
+     *
+     * @param Request                     $request
+     * @param EntityManagerInterface      $entityManager
+     * @param UserPasswordHasherInterface $passwordHasher
+     * @param LoginFormAuthenticator      $authenticator
+     * @param UserAuthenticatorInterface  $userAuthenticator
+     *
+     * @return Response
+     */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, LoginFormAuthenticator $authenticator, UserAuthenticatorInterface $userAuthenticator): Response
     {

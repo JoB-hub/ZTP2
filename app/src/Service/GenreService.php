@@ -39,6 +39,7 @@ class GenreService implements GenreServiceInterface
      * Constructor.
      *
      * @param GenreRepository    $genreRepository Genre repository
+     * @param GameRepository     $gameRepository  Game repository
      * @param PaginatorInterface $paginator       Paginator
      */
     public function __construct(GenreRepository $genreRepository, GameRepository $gameRepository, PaginatorInterface $paginator)

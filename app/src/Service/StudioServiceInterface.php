@@ -29,6 +29,13 @@ interface StudioServiceInterface
      */
     public function save(Studio $studio): void;
 
+    /**
+     * Delete entity.
+     *
+     * @param Studio $studio
+     *
+     * @return void
+     */
     public function delete(Studio $studio): void;
 
     /**

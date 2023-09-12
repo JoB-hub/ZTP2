@@ -163,6 +163,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
      * @see UserInterface
+     *
+     * @return string|null
      */
     public function getSalt(): ?string
     {
@@ -180,15 +182,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * Getter for nickname.
+     *
+     * @return string|null
+     */
     public function getNickname(): ?string
     {
         return $this->nickname;
     }
 
-    public function setNickname(string $nickname): static
+    /**
+     * Setter for nickname.
+     *
+     * @param string $nickname
+     *
+     * @return $this
+     */
+    public function setNickname(string $nickname): void
     {
         $this->nickname = $nickname;
-
-        return $this;
     }
 }

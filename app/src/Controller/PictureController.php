@@ -25,6 +25,8 @@ class PictureController extends AbstractController
 
     /**
      * Constructor.
+     *
+     * @param PictureServiceInterface $pictureService
      */
     public function __construct(PictureServiceInterface $pictureService)
     {

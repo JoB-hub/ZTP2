@@ -34,6 +34,9 @@ class PlatformController extends AbstractController
 
     /**
      * Constructor.
+     *
+     * @param PlatformServiceInterface $platformService
+     * @param TranslatorInterface      $translator
      */
     public function __construct(PlatformServiceInterface $platformService, TranslatorInterface $translator)
     {

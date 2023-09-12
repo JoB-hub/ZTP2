@@ -31,6 +31,8 @@ interface PlatformServiceInterface
 
     /**
      * Delete entity.
+     *
+     * @param Platform $platform Platform entity
      */
     public function delete(Platform $platform): void;
 

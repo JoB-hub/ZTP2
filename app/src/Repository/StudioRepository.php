@@ -1,4 +1,7 @@
 <?php
+/**
+ * Studio repository.
+ */
 
 namespace App\Repository;
 
@@ -50,18 +53,6 @@ class StudioRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('studio');
-    }
-
-    /**
      * Save entity.
      *
      * @param Studio $studio Studio entity
@@ -81,5 +72,17 @@ class StudioRepository extends ServiceEntityRepository
     {
         $this->_em->remove($category);
         $this->_em->flush();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('studio');
     }
 }
