@@ -6,6 +6,9 @@
 
 {% block body %}
     <h1>{{ 'title.game_list'|trans }}</h1>
+    <a href="{{ url('game_create') }}" title="{{ 'title.game_create'|trans }}">
+        {{ 'title.game_create'|trans }}
+    </a>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -17,9 +20,10 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'game.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'game.title') }}</th>
+                <th>{{ 'label.cover'|trans }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'game.description') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.genre'|trans, 'genre.name') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.createdAt'|trans, 'game.createdAT') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.createdAt'|trans, 'game.createdAt') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -28,12 +32,24 @@
                 <tr>
                     <td>{{ game.id }}</td>
                     <td>{{ game.title }}</td>
+                    <td>{% if game.pic.filename is defined and game.pic.filename|length %}
+                            <img src="/uploads/pics/{{ game.pic.filename }}" alt="-">
+                        {% else %}
+                            <div>0</div>
+                        {% endif %}
+                    </td>
                     <td>{{ game.description }}</td>
                     <td>{{ game.genre.name }}</td>
                     <td>{{ game.createdAt|format_date('long') }}</td>
                     <td>
                         <a href="{{ url('game_show', {id: game.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
+                        </a>
+                        <a href="{{ url('game_edit', {id: game.id}) }}" title="{{ 'action.edit'|trans }}">
+                            {{ 'action.edit'|trans }}
+                        </a>
+                        <a href="{{ url('game_delete', {id: game.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
                         </a>
                     </td>
                 </tr>

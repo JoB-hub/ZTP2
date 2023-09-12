@@ -228,7 +228,7 @@ class Game
         return $this->pic;
     }
 
-    public function setPic(Pic $pic): static
+    public function setPic(Pic $pic): void
     {
         // set the owning side of the relation if necessary
         if ($pic->getGame() !== $this) {
@@ -236,8 +236,6 @@ class Game
         }
 
         $this->pic = $pic;
-
-        return $this;
     }
 
     public function getSlug(): ?string
@@ -245,11 +243,9 @@ class Game
         return $this->slug;
     }
 
-    public function setSlug(string $slug): static
+    public function setSlug(string $slug): void
     {
         $this->slug = $slug;
-
-        return $this;
     }
 
     public function getAuthor(): ?User
@@ -257,10 +253,8 @@ class Game
         return $this->author;
     }
 
-    public function setAuthor(?User $author): static
+    public function setAuthor(?User $author): void
     {
         $this->author = $author;
-
-        return $this;
     }
 }

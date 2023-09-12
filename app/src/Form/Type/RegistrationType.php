@@ -1,20 +1,23 @@
 <?php
 /**
- * Studio type.
+ * Category type.
  */
 
 namespace App\Form\Type;
 
-use App\Entity\Studio;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class StudioType.
+ * Class CategoryType.
  */
-class StudioType extends AbstractType
+class RegistrationType extends AbstractType
 {
     /**
      * Builds the form.
@@ -30,12 +33,30 @@ class StudioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(
-            'name',
-            TextType::class,
+            'email',
+            EmailType::class,
             [
-                'label' => 'label.name',
+                'label' => 'label.email',
                 'required' => true,
                 'attr' => ['max_length' => 64],
+            ]
+        );
+        $builder->add(
+            'nickname',
+            TextType::class,
+            [
+                'label' => 'label.nickname',
+                'required' => true,
+                'attr' => ['max_length' => 64],
+            ]
+        );
+        $builder->add(
+            'password',
+            PasswordType::class,
+            [
+                'label' => 'label.password',
+                'required' => true,
+                'attr' => ['max_length' => 255],
             ]
         );
     }
@@ -47,7 +68,16 @@ class StudioType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Studio::class]);
+        $resolver->setDefaults([
+            'constraints' => [
+                new UniqueEntity(
+                    [
+                        'entityClass' => User::class,
+                        'fields' => 'email'
+                    ]
+                )
+            ]
+        ]);
     }
 
     /**
@@ -60,6 +90,6 @@ class StudioType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'studio';
+        return 'register';
     }
 }

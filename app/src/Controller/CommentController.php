@@ -92,7 +92,9 @@ class CommentController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        $user = $this->getUser();
         $comment = new Comment();
+        $comment->setUser($user);
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
@@ -165,15 +167,6 @@ class CommentController extends AbstractController
     #[Route('/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Comment $comment): Response
     {
-//        if(!$this->commentService->canBeDeleted($comment)) {
-//            $this->addFlash(
-//                'warning',
-//                $this->translator->trans('message.comment_contains_games')
-//            );
-//
-//            return $this->redirectToRoute('comment_index');
-//        }
-
         $form = $this->createForm(
             FormType::class,
             $comment,

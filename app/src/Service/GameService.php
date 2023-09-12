@@ -72,5 +72,4 @@ class GameService implements GameServiceInterface
     {
         $this->gameRepository->delete($game);
     }
-
 }

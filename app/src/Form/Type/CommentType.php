@@ -6,6 +6,8 @@
 namespace App\Form\Type;
 
 use App\Entity\Comment;
+use App\Entity\Game;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,6 +31,19 @@ class CommentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $builder->add(
+            'game',
+            EntityType::class,
+            [
+                'class' => Game::class,
+                'choice_label' => function ($game): string {
+                    return $game->getTitle();
+                },
+                'label' => 'label.game',
+                'placeholder' => 'label.none',
+                'required' => true,
+            ]
+        );
         $builder->add(
             'description',
             TextType::class,

@@ -12,9 +12,11 @@ use App\Form\DataTransformer\PlatformsDataTransformer;
 use App\Form\DataTransformer\PicturesDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 /**
  * Class GameType.
@@ -128,6 +130,27 @@ class GameType extends AbstractType
         );
         $builder->get('platforms')->addModelTransformer(
             $this->platformsDataTransformer
+        );
+        $builder->add(
+            'file',
+            FileType::class,
+            [
+                'mapped' => false,
+                'label' => 'label.pic',
+                'required' => true,
+                'constraints' => new Image(
+                    [
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpeg',
+                            'image/pjpeg',
+                            'image/jpeg',
+                            'image/pjpeg',
+                        ],
+                    ]
+                ),
+            ]
         );
     }
 

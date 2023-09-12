@@ -154,5 +154,4 @@ class GameRepository extends ServiceEntityRepository
 
         return $queryBuilder;
     }
-
 }

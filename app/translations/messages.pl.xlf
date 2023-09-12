@@ -248,35 +248,51 @@
             </trans-unit>
             <trans-unit id="52">
                 <source>title.comment_create</source>
-                <target>messages</target>
+                <target>Utwórz komentarz</target>
             </trans-unit>
             <trans-unit id="53">
                 <source>title.comment_edit</source>
-                <target>messages</target>
+                <target>Edytuj komentarz</target>
             </trans-unit>
             <trans-unit id="54">
                 <source>title.comment_delete</source>
-                <target>messages</target>
+                <target>Usuń komentarz</target>
             </trans-unit>
             <trans-unit id="55">
                 <source>message.comment_contains_games</source>
-                <target>messages</target>
+                <target>Komentarz zawiera gry</target>
             </trans-unit>
             <trans-unit id="56">
-                <source>message.comment_contains_games</source>
-                <target>messages</target>
+                <source>register_button</source>
+                <target>Zarejestruj się</target>
             </trans-unit>
             <trans-unit id="57">
                 <source>action_logout</source>
-                <target>messages</target>
+                <target>Wyloguj się</target>
             </trans-unit>
             <trans-unit id="58">
                 <source>action_login</source>
-                <target>messages</target>
+                <target>Zaloguj się</target>
             </trans-unit>
             <trans-unit id="59">
                 <source>label.author</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>title.register</source>
+                <target>Zarejestruj się</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>label.cover</source>
+                <target>Okładka</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>label.pic</source>
                 <target>messages</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>title.game_create</source>
+                <target>Stwórz nową grę</target>
             </trans-unit>
         </body>
     </file>

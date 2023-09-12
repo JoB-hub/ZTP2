@@ -53,23 +53,6 @@ class PicService implements PicServiceInterface
     }
 
     /**
-     * Create pic.
-     *
-     * @param UploadedFile $uploadedFile Uploaded file
-     * @param Pic       $pic       Pic entity
-     * @param Game         $game         Game entity
-     */
-    public function create(UploadedFile $uploadedFile, Pic $pic, Game $game): void
-    {
-        $picFilename = $this->fileUploadService->upload($uploadedFile);
-
-        $pic->setGame($game);
-        $pic->setFilename($picFilename);
-        $this->picRepository->save($pic);
-    }
-
-
-    /**
      * Update pic.
      *
      * @param UploadedFile $uploadedFile Uploaded file
@@ -86,5 +69,21 @@ class PicService implements PicServiceInterface
             );
         }
         $this->create($uploadedFile, $pic, $game);
+    }
+
+    /**
+     * Create pic.
+     *
+     * @param UploadedFile $uploadedFile Uploaded file
+     * @param Pic          $pic          Pic entity
+     * @param Game         $game         Game entity
+     */
+    public function create(UploadedFile $uploadedFile, Pic $pic, Game $game): void
+    {
+        $picFilename = $this->fileUploadService->upload($uploadedFile);
+
+        $pic->setGame($game);
+        $pic->setFilename($picFilename);
+        $this->picRepository->save($pic);
     }
 }

@@ -6,6 +6,9 @@
 
 {% block body %}
     <h1>{{ 'title.comment_list'|trans }}</h1>
+    <a href="{{ url('comment_create') }}" title="{{ 'title.comment_create'|trans }}">
+        {{ 'title.comment_create'|trans }}
+    </a>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -17,8 +20,8 @@
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'comment.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.game'|trans, 'game.title') }}</th>
-                <th>{{ 'label.user'|trans }}</th>
-                <th>{{ 'label.description'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.user'|trans, 'user.nickname') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.description'|trans, 'comment.description') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.createdAt'|trans, 'comment.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.updatedAt'|trans, 'comment.updatedAt') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
@@ -36,6 +39,12 @@
                     <td>
                         <a href="{{ url('comment_show', {id: comment.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
+                        </a>
+                        <a href="{{ url('comment_edit', {id: comment.id}) }}" title="{{ 'action.edit'|trans }}">
+                            {{ 'action.edit'|trans }}
+                        </a>
+                        <a href="{{ url('comment_delete', {id: comment.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
                         </a>
                     </td>
                 </tr>

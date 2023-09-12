@@ -17,7 +17,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 #[ORM\Entity(repositoryClass: PicRepository::class)]
 #[ORM\Table(name: 'pics')]
-#[ORM\UniqueConstraint(name: 'uq_pics_filename', columns: ['filename'])]
 class Pic
 {
     /**
@@ -38,7 +37,7 @@ class Pic
     #[ORM\OneToOne(inversedBy: 'pic', targetEntity: Game::class, cascade: ['persist', 'remove'], fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\Type(Game::class)]
-    private ?Game $game;
+    private ?Game $game = null;
 
     /**
      * Filename.
@@ -47,7 +46,7 @@ class Pic
      */
     #[ORM\Column(type: 'string', length: 191)]
     #[Assert\Type('string')]
-    private ?string $filename;
+    private ?string $filename = null;
 
     /**
      * Getter for Id.

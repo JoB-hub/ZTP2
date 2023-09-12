@@ -8,12 +8,15 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Entity\Pic;
 use App\Form\Type\GameType;
+use App\Service\GameService;
 use App\Service\GameServiceInterface;
+use App\Service\PicService;
 use App\Service\PicServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -26,7 +29,7 @@ class GameController extends AbstractController
     /**
      * Game service.
      */
-    private GameServiceInterface $gameService;
+    private GameService $gameService;
 
     /**
      * Translator.
@@ -36,12 +39,13 @@ class GameController extends AbstractController
     /**
      * Pic service.
      */
-    private PicServiceInterface $picService;
+    private PicService $picService;
 
     /**
      * Constructor.
      *
      * @param GameServiceInterface $gameService Game service
+     * @param PicServiceInterface $picService Pic service
      * @param TranslatorInterface  $translator  Translator
      */
     public function __construct(GameServiceInterface $gameService, TranslatorInterface $translator, PicServiceInterface $picService)
@@ -136,11 +140,11 @@ class GameController extends AbstractController
      *
      * @param Request $request HTTP request
      * @param Game    $game    Game entity
-     *
+     * @param Pic|null $pic    Pic entity
      * @return Response HTTP response
      */
-    #[Route('/{id}/edit', name: 'game_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    public function edit(Request $request, Game $game): Response
+    #[Route('/{id}/edit', name: 'game_edit', methods: 'GET|PUT')]
+    public function edit(Request $request, Game $game, ?Pic $pic): Response
     {
         $form = $this->createForm(
             GameType::class,
@@ -150,9 +154,23 @@ class GameController extends AbstractController
                 'action' => $this->generateUrl('game_edit', ['id' => $game->getId()]),
             ]
         );
+        if (!$pic) {
+            $pic = new Pic();
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var UploadedFile $file
+             */
+            $file = $form->get('file')->getData();
+
+//            $this->picService->update(
+//                $file,
+//                $pic,
+//                $game
+//            );
+
             $this->gameService->save($game);
 
             $this->addFlash(
