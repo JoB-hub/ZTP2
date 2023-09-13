@@ -31,19 +31,15 @@ class GameType extends AbstractType
     /**
      * Pictures data transformer.
      */
-    private PicturesDataTransformer $picturesDataTransformer;
 
     /**
      * Constructor.
      *
      * @param PlatformsDataTransformer $platformsDataTransformer Platforms data transformer
-     *
-     * @param PicturesDataTransformer  $picturesDataTransformer  Pictures data transformer
      */
-    public function __construct(PlatformsDataTransformer $platformsDataTransformer, PicturesDataTransformer $picturesDataTransformer)
+    public function __construct(PlatformsDataTransformer $platformsDataTransformer)
     {
         $this->platformsDataTransformer = $platformsDataTransformer;
-        $this->picturesDataTransformer = $picturesDataTransformer;
     }
 
     /**

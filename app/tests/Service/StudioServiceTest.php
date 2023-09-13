@@ -1,9 +1,11 @@
 <?php
+
+namespace App\Tests\Service;
+
 use App\Entity\Studio;
 use App\Repository\GameRepository;
 use App\Repository\StudioRepository;
 use App\Service\StudioService;
-use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -11,10 +13,10 @@ use PHPUnit\Framework\TestCase;
 
 class StudioServiceTest extends TestCase
 {
-    private $studioRepository;
-    private $gameRepository;
-    private $paginator;
-    private $studioService;
+    private StudioRepository $studioRepository;
+    private GameRepository $gameRepository;
+    private PaginatorInterface $paginator;
+    private StudioService $studioService;
 
     protected function setUp(): void
     {

@@ -3,16 +3,8 @@
 namespace App\Tests\Service;
 
 use App\Entity\Game;
-use App\Entity\Genre;
-use App\Entity\Platform;
-use App\Entity\Studio;
-use App\Entity\Pic;
-use App\Entity\User;
 use App\Repository\GameRepository;
 use App\Repository\GenreRepository;
-use App\Repository\PlatformRepository;
-use App\Repository\StudioRepository;
-use App\Repository\PicRepository;
 use App\Repository\UserRepository;
 use App\Service\GameService;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -37,10 +29,8 @@ class GameServiceTest extends TestCase
 
     public function testGetPaginatedList(): void
     {
-        // Create a mock for PaginationInterface
         $pagination = $this->createMock(PaginationInterface::class);
 
-        // Define expected parameters and return value for paginator->paginate()
         $page = 1;
         $itemsPerPage = GameRepository::PAGINATOR_ITEMS_PER_PAGE;
         $this->paginator->expects($this->once())
@@ -52,7 +42,6 @@ class GameServiceTest extends TestCase
             )
             ->willReturn($pagination);
 
-        // Call the getPaginatedList method and assert the returned value
         $result = $this->gameService->getPaginatedList($page);
         $this->assertSame($pagination, $result);
     }
@@ -80,6 +69,4 @@ class GameServiceTest extends TestCase
 
         $this->gameService->delete($game);
     }
-
-    // Add more test cases as needed for other methods in GameService
 }

@@ -36,7 +36,6 @@ class GameFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             );
             $game->setGenre($this->getRandomReference('genres'));
             $game->setStudio($this->getRandomReference('studios'));
-            //            $game->addPicture($this->getRandomReference('pictures'));
 
             /** @var array<array-key, Platform> $platforms */
             $platforms = $this->getRandomReferences(
