@@ -3,7 +3,7 @@
  * Hello World controller tests.
  */
 
-namespace App\Tests\Controller;
+namespace Controller;
 
 use Generator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

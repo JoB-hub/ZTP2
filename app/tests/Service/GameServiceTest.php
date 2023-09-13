@@ -1,11 +1,12 @@
 <?php
+/**
+ * Game service tests.
+ */
 
-namespace App\Tests\Service;
+namespace Service;
 
 use App\Entity\Game;
 use App\Repository\GameRepository;
-use App\Repository\GenreRepository;
-use App\Repository\UserRepository;
 use App\Service\GameService;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -14,9 +15,6 @@ use PHPUnit\Framework\TestCase;
 class GameServiceTest extends TestCase
 {
     private GameRepository $gameRepository;
-    private GenreRepository $genreRepository;
-    private UserRepository $userRepository;
-
     private PaginatorInterface $paginator;
     private GameService $gameService;
 
@@ -48,7 +46,6 @@ class GameServiceTest extends TestCase
 
     public function testSave()
     {
-        // Mock a Game entity
         $game = $this->createMock(Game::class);
 
         $this->gameRepository->expects($this->once())
@@ -60,7 +57,6 @@ class GameServiceTest extends TestCase
 
     public function testDelete()
     {
-        // Mock a Game entity
         $game = $this->createMock(Game::class);
 
         $this->gameRepository->expects($this->once())

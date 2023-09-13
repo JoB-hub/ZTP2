@@ -1,6 +1,9 @@
 <?php
+/**
+ * Comment service tests.
+ */
 
-namespace App\Tests\Service;
+namespace Service;
 
 use App\Entity\Comment;
 use App\Repository\CommentRepository;
@@ -9,6 +12,9 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * CommentServiceTest class.
+ */
 class CommentServiceTest extends TestCase
 {
     private CommentRepository $commentRepository;
@@ -24,10 +30,8 @@ class CommentServiceTest extends TestCase
 
     public function testGetPaginatedList(): void
     {
-        // Create a mock for PaginationInterface
         $pagination = $this->createMock(PaginationInterface::class);
 
-        // Define expected parameters and return value for paginator->paginate()
         $page = 1;
         $itemsPerPage = CommentRepository::PAGINATOR_ITEMS_PER_PAGE;
         $this->paginator->expects($this->once())
@@ -39,14 +43,12 @@ class CommentServiceTest extends TestCase
             )
             ->willReturn($pagination);
 
-        // Call the getPaginatedList method and assert the returned value
         $result = $this->commentService->getPaginatedList($page);
         $this->assertSame($pagination, $result);
     }
 
     public function testSave()
     {
-        // Mock a Comment entity
         $comment = $this->createMock(Comment::class);
 
         $this->commentRepository->expects($this->once())
@@ -58,7 +60,6 @@ class CommentServiceTest extends TestCase
 
     public function testDelete()
     {
-        // Mock a Comment entity
         $comment = $this->createMock(Comment::class);
 
         $this->commentRepository->expects($this->once())
@@ -67,6 +68,4 @@ class CommentServiceTest extends TestCase
 
         $this->commentService->delete($comment);
     }
-
-    // Add more test cases as needed for other methods in CommentService
 }

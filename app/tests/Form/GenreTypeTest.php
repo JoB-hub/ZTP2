@@ -3,7 +3,7 @@
  * GenreType tests.
  */
 
-namespace App\Tests\Form;
+namespace Form;
 
 use App\Entity\Genre;
 use App\Form\Type\GenreType;
@@ -31,5 +31,6 @@ class GenreTypeTest extends TypeTestCase
 
         $this->assertTrue($form->isSynchronized());
         $this->assertEquals($expected, $newObject);
+        $this->assertEquals($expected->getId(), $newObject->getId());
     }
 }

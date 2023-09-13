@@ -3,7 +3,7 @@
  * IndexController tests.
  */
 
-namespace App\Tests\Controller;
+namespace Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

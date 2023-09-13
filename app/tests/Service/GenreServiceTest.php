@@ -1,6 +1,9 @@
 <?php
+/**
+ * Genre service tests.
+ */
 
-namespace App\Tests\Service;
+namespace Service;
 
 use App\Entity\Genre;
 use App\Repository\GenreRepository;
@@ -29,10 +32,8 @@ class GenreServiceTest extends TestCase
 
     public function testGetPaginatedList(): void
     {
-        // Create a mock for PaginationInterface
         $pagination = $this->createMock(PaginationInterface::class);
 
-        // Define expected parameters and return value for paginator->paginate()
         $page = 1;
         $itemsPerPage = GenreRepository::PAGINATOR_ITEMS_PER_PAGE;
         $this->paginator->expects($this->once())
@@ -44,14 +45,12 @@ class GenreServiceTest extends TestCase
             )
             ->willReturn($pagination);
 
-        // Call the getPaginatedList method and assert the returned value
         $result = $this->genreService->getPaginatedList($page);
         $this->assertSame($pagination, $result);
     }
 
     public function testSave()
     {
-        // Mock a Genre entity
         $genre = $this->createMock(Genre::class);
 
         $this->genreRepository->expects($this->once())
@@ -63,7 +62,6 @@ class GenreServiceTest extends TestCase
 
     public function testDelete()
     {
-        // Mock a Genre entity
         $genre = $this->createMock(Genre::class);
 
         $this->genreRepository->expects($this->once())

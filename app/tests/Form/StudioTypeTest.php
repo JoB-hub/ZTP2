@@ -3,7 +3,7 @@
  * StudioType tests.
  */
 
-namespace App\Tests\Form;
+namespace Form;
 
 use App\Entity\Studio;
 use App\Form\Type\StudioType;
@@ -29,5 +29,6 @@ class StudioTypeTest extends TypeTestCase
 
         $this->assertTrue($form->isSynchronized());
         $this->assertEquals($expected, $newObject);
+        $this->assertEquals($expected->getId(), $newObject->getId());
     }
 }

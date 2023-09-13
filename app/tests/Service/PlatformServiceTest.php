@@ -1,16 +1,15 @@
 <?php
+/**
+ * Platform service tests.
+ */
 
-namespace App\Tests\Service;
+namespace Service;
 
-use App\Entity\Genre;
-use App\Service\GenreService;
 use App\Service\PlatformService;
 use App\Entity\Platform;
 use App\Repository\PlatformRepository;
-use Faker\Container\Container;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 
 class PlatformServiceTest extends TestCase
@@ -18,11 +17,6 @@ class PlatformServiceTest extends TestCase
     private PlatformRepository $platformRepository;
     private PaginatorInterface $paginator;
     private PlatformService $platformService;
-    private GenreService $genreService;
-
-    private \Symfony\Component\DependencyInjection\Container $container;
-
-    private ?EntityManagerInterface $entityManager;
 
     public function setUp(): void
     {

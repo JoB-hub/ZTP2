@@ -1,25 +1,25 @@
 <?php
 /**
- * Studios controller tests.
+ * Platforms controller tests.
  */
 
 namespace Controller;
 
-use App\Entity\Studio;
-use App\Repository\StudioRepository;
+use App\Entity\Platform;
+use App\Repository\PlatformRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class StudioControllerTest.
+ * Class PlatformControllerTest.
  */
-class StudioControllerTest extends WebTestCase
+class PlatformControllerTest extends WebTestCase
 {
     /**
      * Test route.
      *
      * @const string
      */
-    public const TEST_ROUTE = '/studio';
+    public const TEST_ROUTE = '/platform';
 
     /**
      * Set up tests.
@@ -30,9 +30,9 @@ class StudioControllerTest extends WebTestCase
     }
 
     /**
-     * Test studio index route.
+     * Test platform index route.
      */
-    public function testStudioIndexRoute(): void
+    public function testPlatformIndexRoute(): void
     {
         $this->httpClient->request('GET', self::TEST_ROUTE);
         $resultHttpStatusCode = $this->httpClient->getResponse()->getStatusCode();
@@ -41,18 +41,18 @@ class StudioControllerTest extends WebTestCase
     }
 
     /**
-     * Test studio show route.
+     * Test platform show route.
      *
      */
-    public function testStudioShowRoute(): void
+    public function testPlatformShowRoute(): void
     {
-        $newStudio = new Studio();
-        $newStudio->setName('newStudio');
-        $studioRepository = static::getContainer()->get(StudioRepository::class);
+        $newPlatform = new Platform();
+        $newPlatform->setName('newPlatform');
+        $platformRepository = static::getContainer()->get(PlatformRepository::class);
 
-        $studioRepository->save($newStudio);
+        $platformRepository->save($newPlatform);
 
-        $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$newStudio->getId());
+        $this->httpClient->request('GET', self::TEST_ROUTE.'/'.$newPlatform->getId());
         $resultHttpStatusCode = $this->httpClient->getResponse()->getStatusCode();
 
         $this->assertEquals(200, $resultHttpStatusCode);

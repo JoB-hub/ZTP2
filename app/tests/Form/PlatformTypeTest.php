@@ -3,7 +3,7 @@
  * PlatformType tests.
  */
 
-namespace App\Tests\Form;
+namespace Form;
 
 use App\Entity\Platform;
 use App\Form\Type\PlatformType;
@@ -29,5 +29,6 @@ class PlatformTypeTest extends TypeTestCase
 
         $this->assertTrue($form->isSynchronized());
         $this->assertEquals($expected, $newObject);
+        $this->assertEquals($expected->getId(), $newObject->getId());
     }
 }

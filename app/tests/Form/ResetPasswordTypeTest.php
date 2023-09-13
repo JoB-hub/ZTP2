@@ -3,7 +3,7 @@
  * ResetPasswordType tests.
  */
 
-namespace App\Tests\Form;
+namespace Form;
 
 use App\Entity\User;
 use App\Form\Type\ResetPasswordType;
