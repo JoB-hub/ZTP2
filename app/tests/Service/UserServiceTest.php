@@ -12,12 +12,20 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * UserServiceTest class.
+ */
 class UserServiceTest extends TestCase
 {
     private UserRepository $userRepository;
     private PaginatorInterface $paginator;
     private UserService $userService;
 
+    /**
+     * Set up.
+     *
+     * @return void
+     */
     public function setUp(): void
     {
         $this->userRepository = $this->createMock(UserRepository::class);
@@ -26,6 +34,11 @@ class UserServiceTest extends TestCase
         $this->userService = new UserService($this->userRepository, $this->paginator);
     }
 
+    /**
+     * Test paginated list.
+     *
+     * @return void
+     */
     public function testGetPaginatedList(): void
     {
         $pagination = $this->createMock(PaginationInterface::class);
@@ -45,6 +58,11 @@ class UserServiceTest extends TestCase
         $this->assertSame($pagination, $result);
     }
 
+    /**
+     * Test password change.
+     *
+     * @return void
+     */
     public function testChangePassword(): void
     {
         $user = $this->createMock(User::class);
@@ -57,6 +75,11 @@ class UserServiceTest extends TestCase
         $this->userService->changePassword($user, $password);
     }
 
+    /**
+     * Test save user.
+     *
+     * @return void
+     */
     public function testSave(): void
     {
         $user = $this->createMock(User::class);

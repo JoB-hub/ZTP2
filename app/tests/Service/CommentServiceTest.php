@@ -21,6 +21,11 @@ class CommentServiceTest extends TestCase
     private PaginatorInterface $paginator;
     private CommentService $commentService;
 
+    /**
+     * Set up.
+     *
+     * @return void
+     */
     protected function setUp(): void
     {
         $this->commentRepository = $this->createMock(CommentRepository::class);
@@ -28,6 +33,11 @@ class CommentServiceTest extends TestCase
         $this->commentService = new CommentService($this->commentRepository, $this->paginator);
     }
 
+    /**
+     * Test paginated list.
+     *
+     * @return void
+     */
     public function testGetPaginatedList(): void
     {
         $pagination = $this->createMock(PaginationInterface::class);
@@ -47,6 +57,11 @@ class CommentServiceTest extends TestCase
         $this->assertSame($pagination, $result);
     }
 
+    /**
+     * Test save comment.
+     *
+     * @return void
+     */
     public function testSave()
     {
         $comment = $this->createMock(Comment::class);
@@ -58,6 +73,11 @@ class CommentServiceTest extends TestCase
         $this->commentService->save($comment);
     }
 
+    /**
+     * Test delete comment.
+     *
+     * @return void
+     */
     public function testDelete()
     {
         $comment = $this->createMock(Comment::class);

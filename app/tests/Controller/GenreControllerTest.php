@@ -58,5 +58,4 @@ class GenreControllerTest extends WebTestCase
 
         $this->assertEquals(200, $resultHttpStatusCode);
     }
-
 }

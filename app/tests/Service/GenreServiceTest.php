@@ -15,6 +15,9 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * GenreServiceTest class.
+ */
 class GenreServiceTest extends TestCase
 {
     private GenreRepository $genreRepository;
@@ -22,6 +25,11 @@ class GenreServiceTest extends TestCase
     private PaginatorInterface $paginator;
     private GenreService $genreService;
 
+    /**
+     * Set up.
+     *
+     * @return void
+     */
     protected function setUp(): void
     {
         $this->genreRepository = $this->createMock(GenreRepository::class);
@@ -30,6 +38,11 @@ class GenreServiceTest extends TestCase
         $this->genreService = new GenreService($this->genreRepository, $this->gameRepository, $this->paginator);
     }
 
+    /**
+     * Test paginated list.
+     *
+     * @return void
+     */
     public function testGetPaginatedList(): void
     {
         $pagination = $this->createMock(PaginationInterface::class);
@@ -49,6 +62,11 @@ class GenreServiceTest extends TestCase
         $this->assertSame($pagination, $result);
     }
 
+    /**
+     * Test save genre.
+     *
+     * @return void
+     */
     public function testSave()
     {
         $genre = $this->createMock(Genre::class);
@@ -60,6 +78,11 @@ class GenreServiceTest extends TestCase
         $this->genreService->save($genre);
     }
 
+    /**
+     * Test delete genre.
+     *
+     * @return void
+     */
     public function testDelete()
     {
         $genre = $this->createMock(Genre::class);
@@ -71,6 +94,11 @@ class GenreServiceTest extends TestCase
         $this->genreService->delete($genre);
     }
 
+    /**
+     * Data provider.
+     *
+     * @return array[]
+     */
     public function canBeDeletedDataProvider(): array
     {
         return [
@@ -83,7 +111,13 @@ class GenreServiceTest extends TestCase
     }
 
     /**
+     * Test if can be deleted.
+     *
      * @dataProvider canBeDeletedDataProvider
+     *
+     * @param int  $countByGenreResult
+     * @param bool $expectedResult
+     * @param bool $simulateException
      */
     public function testCanBeDeleted(int $countByGenreResult, bool $expectedResult, bool $simulateException): void
     {

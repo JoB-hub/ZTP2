@@ -14,6 +14,9 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * GameServiceTest class.
+ */
 class StudioServiceTest extends TestCase
 {
     private StudioRepository $studioRepository;
@@ -21,6 +24,10 @@ class StudioServiceTest extends TestCase
     private PaginatorInterface $paginator;
     private StudioService $studioService;
 
+    /**
+     * Set up.
+     * @return void
+     */
     protected function setUp(): void
     {
         $this->studioRepository = $this->createMock(StudioRepository::class);
@@ -29,6 +36,11 @@ class StudioServiceTest extends TestCase
         $this->studioService = new StudioService($this->studioRepository, $this->paginator, $this->gameRepository);
     }
 
+    /**
+     * Test paginated list.
+     *
+     * @return void
+     */
     public function testGetPaginatedList(): void
     {
         $pagination = $this->createMock(PaginationInterface::class);
@@ -48,6 +60,11 @@ class StudioServiceTest extends TestCase
         $this->assertSame($pagination, $result);
     }
 
+    /**
+     * Test save studio.
+     *
+     * @return void
+     */
     public function testSave()
     {
         $studio = $this->createMock(Studio::class);
@@ -59,6 +76,11 @@ class StudioServiceTest extends TestCase
         $this->studioService->save($studio);
     }
 
+    /**
+     * Test delete studio.
+     *
+     * @return void
+     */
     public function testDelete()
     {
         $studio = $this->createMock(Studio::class);
@@ -70,6 +92,11 @@ class StudioServiceTest extends TestCase
         $this->studioService->delete($studio);
     }
 
+    /**
+     * Test can be deleted.
+     *
+     * @return void
+     */
     public function testCanBeDeleted()
     {
         $studio = $this->createMock(Studio::class);
@@ -83,6 +110,11 @@ class StudioServiceTest extends TestCase
         $this->assertTrue($result);
     }
 
+    /**
+     * Test cannot be deleted.
+     *
+     * @return void
+     */
     public function testCannotBeDeleted()
     {
         $studio = $this->createMock(Studio::class);

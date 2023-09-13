@@ -80,11 +80,14 @@ class SecurityControllerTest extends WebTestCase
     /**
      * Create user.
      *
-     * @param array $roles User roles
+     * @param array  $roles    User roles
+     * @param string $email
+     * @param string $nickname
      *
      * @return User User entity
      *
-     * @throws ContainerExceptionInterface|NotFoundExceptionInterface|OptimisticLockException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     protected function createUser(array $roles, string $email, string $nickname): User
     {

@@ -12,12 +12,20 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * GameServiceTest class.
+ */
 class GameServiceTest extends TestCase
 {
     private GameRepository $gameRepository;
     private PaginatorInterface $paginator;
     private GameService $gameService;
 
+    /**
+     * Set up.
+     *
+     * @return void
+     */
     protected function setUp(): void
     {
         $this->gameRepository = $this->createMock(GameRepository::class);
@@ -25,6 +33,11 @@ class GameServiceTest extends TestCase
         $this->gameService = new GameService($this->gameRepository, $this->paginator);
     }
 
+    /**
+     * Test paginated list.
+     *
+     * @return void
+     */
     public function testGetPaginatedList(): void
     {
         $pagination = $this->createMock(PaginationInterface::class);
@@ -44,6 +57,11 @@ class GameServiceTest extends TestCase
         $this->assertSame($pagination, $result);
     }
 
+    /**
+     * Test save game.
+     *
+     * @return void
+     */
     public function testSave()
     {
         $game = $this->createMock(Game::class);
@@ -55,6 +73,11 @@ class GameServiceTest extends TestCase
         $this->gameService->save($game);
     }
 
+    /**
+     * Test delete game.
+     *
+     * @return void
+     */
     public function testDelete()
     {
         $game = $this->createMock(Game::class);

@@ -24,6 +24,11 @@ class PicServiceTest extends TestCase
     private FileUploadServiceInterface $fileUploadService;
     private Filesystem $filesystem;
 
+    /**
+     * Set up.
+     *
+     * @return void
+     */
     protected function setUp(): void
     {
         $this->targetDirectory = '/public/uploads/pics';
@@ -32,6 +37,11 @@ class PicServiceTest extends TestCase
         $this->filesystem = $this->createMock(Filesystem::class);
     }
 
+    /**
+     * Test create pic.
+     *
+     * @return void
+     */
     public function testCreate(): void
     {
         $uploadedFile = $this->createMock(UploadedFile::class);
