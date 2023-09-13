@@ -73,50 +73,40 @@ class GenreServiceTest extends TestCase
         $this->genreService->delete($genre);
     }
 
-
     public function canBeDeletedDataProvider(): array
     {
         return [
-            // Test case 1: When countByGenre returns 0
             [0, true, false],
 
-            // Test case 2: When countByGenre returns a value greater than 0
             [1, false, false],
 
-            // Test case 3: Simulate an exception by using a negative integer
             [-1, false, true],
         ];
     }
-
 
     /**
      * @dataProvider canBeDeletedDataProvider
      */
     public function testCanBeDeleted(int $countByGenreResult, bool $expectedResult, bool $simulateException): void
     {
-        // Mock a Genre entity
         $genre = $this->createMock(Genre::class);
 
-        // Mock the behavior of GameRepository
         $this->gameRepository->expects($this->once())
             ->method('countByGenre')
             ->with($genre)
             ->willReturn($countByGenreResult);
 
         if ($simulateException) {
-            // Simulate an exception
             $this->gameRepository->expects($this->once())
                 ->method('countByGenre')
-                ->willThrowException(new NoResultException()); // Or NonUniqueResultException
+                ->willThrowException(new NoResultException());
         }
 
         try {
             $result = $this->genreService->canBeDeleted($genre);
             $this->assertSame($expectedResult, $result);
         } catch (NoResultException|NonUniqueResultException $exception) {
-            // If an exception is thrown and caught, this block will be executed
-            $this->assertFalse($expectedResult); // Ensure that $expectedResult is false when an exception is caught
+            $this->assertFalse($expectedResult);
         }
     }
-
 }
