@@ -86,9 +86,9 @@ class PlatformService implements PlatformServiceInterface
     }
 
     /**
-     * Find by title.
+     * Find by name.
      *
-     * @param string $name Platform title
+     * @param string $name Platform name
      *
      * @return Platform|null Platform entity
      */

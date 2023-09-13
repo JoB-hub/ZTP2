@@ -75,22 +75,4 @@ class CommentService implements CommentServiceInterface
     {
         $this->commentRepository->delete($comment);
     }
-
-    //    /**
-    //     * Can Comment be deleted?
-    //     *
-    //     * @param Comment $comment Comment entity
-    //     *
-    //     * @return bool Result
-    //     */
-    //    public function canBeDeleted(Comment $comment): bool
-    //    {
-    //        try {
-    //            $result = $this->gameRepository->countByComment($comment);
-    //
-    //            return !($result > 0);
-    //        } catch (NoResultException|NonUniqueResultException) {
-    //            return false;
-    //        }
-    //    }
 }

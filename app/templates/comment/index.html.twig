@@ -6,9 +6,11 @@
 
 {% block body %}
     <h1>{{ 'title.comment_list'|trans }}</h1>
+    {% if is_granted('ROLE_USER') %}
     <a href="{{ url('comment_create') }}" title="{{ 'title.comment_create'|trans }}">
         {{ 'title.comment_create'|trans }}
     </a>
+    {% endif %}
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -37,7 +39,7 @@
                     <td>{{ comment.author.email }}</td>
                     <td>{{ comment.description }}</td>
                     <td>{{ comment.createdAt|format_date('long') }}</td>
-                    <td>{{ comment.updatedAt|format_date('long') }}</td>>
+                    <td>{{ comment.updatedAt|format_date('long') }}</td>
                     <td>
                         <a href="{{ url('comment_show', {id: comment.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}

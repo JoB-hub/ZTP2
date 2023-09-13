@@ -101,8 +101,7 @@
         ],
         "static-analysis": [
             "./vendor/bin/phpcs --config-set installed_paths $(realpath vendor/escapestudios/symfony2-coding-standard)",
-            "./vendor/bin/phpcs --config-set default_standard Symfony",
-            "./vendor/bin/phpcbf --standard=Symfony src/ --ignore=Kernel.php"
+            "./vendor/bin/phpcs --config-set default_standard Symfony"
         ]
     },
     "conflict": {
