@@ -35,7 +35,7 @@
                     <td>{{ game.id }}</td>
                     <td>{{ game.title }}</td>
                     <td>{% if game.pic.filename is defined and game.pic.filename|length %}
-                            <img src="/uploads/pics/{{ game.pic.filename }}" alt="-">
+                            <img src="{{ asset(pics_directory~game.pic.filename) }}" alt="game cover">
                         {% else %}
                             <div>0</div>
                         {% endif %}

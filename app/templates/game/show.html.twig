@@ -7,7 +7,7 @@
 {% block body %}
     <h1>{{ 'title.game_details'|trans({'%id%': game.id|default('')}) }}</h1>
     {% if game.pic.filename is defined and game.pic.filename|length %}
-        <img src="/uploads/pics/{{ game.pic.filename }}" alt="game cover">
+        <img src="{{ asset(pics_directory~game.pic.filename) }}" alt="game cover">
     {% endif %}
     {% if game is defined and game|length %}
         <dl class="dl-horizontal">
