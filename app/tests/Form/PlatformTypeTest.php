@@ -14,11 +14,16 @@ use Symfony\Component\Form\Test\TypeTestCase;
  */
 class PlatformTypeTest extends TypeTestCase
 {
+    /**
+     * Test for PlatformType.
+     *
+     * @return void
+     */
     public function testPlatformType(): void
     {
         $infoForForm =
             [
-                'name' => 'newPlatformName'
+                'name' => 'newPlatformName',
             ];
 
         $newObject = new Platform();

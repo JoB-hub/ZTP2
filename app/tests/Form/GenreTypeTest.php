@@ -14,12 +14,17 @@ use Symfony\Component\Form\Test\TypeTestCase;
  */
 class GenreTypeTest extends TypeTestCase
 {
+    /**
+     * Test for GenreType.
+     *
+     * @return void
+     */
     public function testGenreType(): void
     {
         $infoForForm =
             [
                 'name' => 'newGenreName',
-                'description' => 'Lorem ipsum dolor.'
+                'description' => 'Lorem ipsum dolor.',
             ];
 
         $newObject = new Genre();

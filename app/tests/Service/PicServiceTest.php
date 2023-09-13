@@ -14,6 +14,9 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * PicServiceTest class.
+ */
 class PicServiceTest extends TestCase
 {
     private string $targetDirectory;

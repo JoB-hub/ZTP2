@@ -14,6 +14,11 @@ use Symfony\Component\Form\Test\TypeTestCase;
  */
 class ResetPasswordTypeTest extends TypeTestCase
 {
+    /**
+     * Test for ResetPasswordType.
+     *
+     * @return void
+     */
     public function testResetPasswordType(): void
     {
         $infoForForm =

@@ -12,12 +12,19 @@ use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * PlatformServiceTest class.
+ */
 class PlatformServiceTest extends TestCase
 {
     private PlatformRepository $platformRepository;
     private PaginatorInterface $paginator;
     private PlatformService $platformService;
 
+    /**
+     * Set up.
+     * @return void
+     */
     public function setUp(): void
     {
         $this->platformRepository = $this->createMock(PlatformRepository::class);
@@ -26,6 +33,11 @@ class PlatformServiceTest extends TestCase
         $this->platformService = new PlatformService($this->platformRepository, $this->paginator);
     }
 
+    /**
+     * Test paginated list.
+     *
+     * @return void
+     */
     public function testGetPaginatedList(): void
     {
         $pagination = $this->createMock(PaginationInterface::class);
@@ -45,6 +57,11 @@ class PlatformServiceTest extends TestCase
         $this->assertSame($pagination, $result);
     }
 
+    /**
+     * Test platform save.
+     *
+     * @return void
+     */
     public function testSave(): void
     {
         $platform = $this->createMock(Platform::class);
@@ -56,6 +73,11 @@ class PlatformServiceTest extends TestCase
         $this->platformService->save($platform);
     }
 
+    /**
+     * Test platform delete.
+     *
+     * @return void
+     */
     public function testDelete(): void
     {
         $platform = $this->createMock(Platform::class);
@@ -67,6 +89,11 @@ class PlatformServiceTest extends TestCase
         $this->platformService->delete($platform);
     }
 
+    /**
+     * Test if platform can be deleted.
+     *
+     * @return void
+     */
     public function testCanBeDeleted(): void
     {
         $platform = $this->createMock(Platform::class);

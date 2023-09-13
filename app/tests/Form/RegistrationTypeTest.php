@@ -14,13 +14,18 @@ use Symfony\Component\Form\Test\TypeTestCase;
  */
 class RegistrationTypeTest extends TypeTestCase
 {
+    /**
+     * Test for RegistrationType.
+     *
+     * @return void
+     */
     public function testRegistrationType(): void
     {
         $infoForForm =
             [
                 'email' => 'newEmail',
                 'nickname' => 'newNickname',
-                'password' => 'newPassword'
+                'password' => 'newPassword',
             ];
 
         $newObject = new User();

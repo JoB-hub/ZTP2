@@ -14,6 +14,11 @@ use Symfony\Component\Form\Test\TypeTestCase;
  */
 class StudioTypeTest extends TypeTestCase
 {
+    /**
+     * Test for StudioType.
+     *
+     * @return void
+     */
     public function testStudioType(): void
     {
         $infoForForm =
