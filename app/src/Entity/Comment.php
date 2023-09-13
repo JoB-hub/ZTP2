@@ -2,6 +2,7 @@
 /**
  * Comment entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
@@ -57,8 +58,6 @@ class Comment
 
     /**
      * Game.
-     *
-     * @var Game|null
      */
     #[ORM\ManyToOne(targetEntity: Game::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
@@ -97,8 +96,6 @@ class Comment
      * Setter for description.
      *
      * @param string|null $description
-     *
-     * @return void
      */
     public function setDescription(?string $description): void
     {
@@ -119,8 +116,6 @@ class Comment
      * Set createdAt.
      *
      * @param DateTimeInterface $createdAt
-     *
-     * @return void
      */
     public function setCreatedAt(DateTimeInterface $createdAt): void
     {
@@ -141,8 +136,6 @@ class Comment
      * Set updatedAt.
      *
      * @param DateTimeInterface $updatedAt
-     *
-     * @return void
      */
     public function setUpdatedAt(DateTimeInterface $updatedAt): void
     {
@@ -163,8 +156,6 @@ class Comment
      * Setter for game.
      *
      * @param Game|null $game
-     *
-     * @return void
      */
     public function setGame(?Game $game): void
     {
@@ -185,8 +176,6 @@ class Comment
      * Setter for author.
      *
      * @param User|null $author
-     *
-     * @return void
      */
     public function setAuthor(?User $author): void
     {

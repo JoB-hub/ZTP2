@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class IndexController.
- *
  */
 #[Route('/')]
 class IndexController extends AbstractController

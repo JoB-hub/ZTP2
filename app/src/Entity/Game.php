@@ -29,9 +29,19 @@ class Game
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * Title.
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    /**
+     * Description.
+     *
+     * @var string|null
+     */
     #[ORM\Column(length: 1000)]
     private ?string $description = null;
 
@@ -46,6 +56,8 @@ class Game
 
     /**
      * Genre.
+     *
+     * @var Genre|null
      */
     #[ORM\ManyToOne(targetEntity: Genre::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -80,6 +92,8 @@ class Game
 
     /**
      * Slug.
+     *
+     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Gedmo\Slug(fields: ['title'])]
@@ -87,6 +101,8 @@ class Game
 
     /**
      * Author.
+     *
+     * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
@@ -126,8 +142,6 @@ class Game
      * Setter for title.
      *
      * @param string $title
-     *
-     * @return void
      */
     public function setTitle(string $title): void
     {
@@ -148,8 +162,6 @@ class Game
      * Setter for description.
      *
      * @param string $description
-     *
-     * @return void
      */
     public function setDescription(string $description): void
     {
@@ -170,8 +182,6 @@ class Game
      * Setter for createdAt.
      *
      * @param DateTimeInterface $createdAt
-     *
-     * @return void
      */
     public function setCreatedAt(DateTimeInterface $createdAt): void
     {
@@ -192,8 +202,6 @@ class Game
      * Setter for genre.
      *
      * @param Genre|null $genre
-     *
-     * @return void
      */
     public function setGenre(?Genre $genre): void
     {
@@ -214,8 +222,6 @@ class Game
      * Setter for studio.
      *
      * @param Studio|null $studio
-     *
-     * @return void
      */
     public function setStudio(?Studio $studio): void
     {
@@ -268,8 +274,6 @@ class Game
      * Setter for pics.
      *
      * @param Pic $pic
-     *
-     * @return void
      */
     public function setPic(Pic $pic): void
     {
@@ -295,8 +299,6 @@ class Game
      * Setter for slug.
      *
      * @param string $slug
-     *
-     * @return void
      */
     public function setSlug(string $slug): void
     {
@@ -317,8 +319,6 @@ class Game
      * Setter for author.
      *
      * @param User|null $author
-     *
-     * @return void
      */
     public function setAuthor(?User $author): void
     {

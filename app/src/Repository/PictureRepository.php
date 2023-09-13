@@ -56,7 +56,6 @@ class PictureRepository extends ServiceEntityRepository
             ->orderBy('picture.id', 'DESC');
     }
 
-
     /**
      * Save entity.
      *

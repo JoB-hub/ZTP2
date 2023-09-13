@@ -17,8 +17,6 @@ class Picture
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -27,8 +25,6 @@ class Picture
 
     /**
      * Filename.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 255)]
     private ?string $filename = null;
@@ -57,8 +53,6 @@ class Picture
      * Setter for filename.
      *
      * @param string $filename
-     *
-     * @return void
      */
     public function setFilename(string $filename): void
     {

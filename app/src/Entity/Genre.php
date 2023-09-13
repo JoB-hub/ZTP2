@@ -68,8 +68,6 @@ class Genre
      * Setter for name.
      *
      * @param string $name
-     *
-     * @return void
      */
     public function setName(string $name): void
     {
@@ -90,8 +88,6 @@ class Genre
      * Setter for description.
      *
      * @param string $description
-     *
-     * @return void
      */
     public function setDescription(string $description): void
     {

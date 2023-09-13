@@ -37,7 +37,8 @@ class GameType extends AbstractType
      * Constructor.
      *
      * @param PlatformsDataTransformer $platformsDataTransformer Platforms data transformer
-     * @param PicturesDataTransformer  $picturesDataTransformer
+     *
+     * @param PicturesDataTransformer  $picturesDataTransformer  Pictures data transformer
      */
     public function __construct(PlatformsDataTransformer $platformsDataTransformer, PicturesDataTransformer $picturesDataTransformer)
     {

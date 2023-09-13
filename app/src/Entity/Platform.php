@@ -36,7 +36,8 @@ class Platform
     private ?string $name = null;
 
     /**
-     * Getter for Id.
+     * Getter for id.
+     *
      * @return int|null
      */
     public function getId(): ?int
@@ -58,8 +59,6 @@ class Platform
      * Setter for name.
      *
      * @param string $name
-     *
-     * @return void
      */
     public function setName(string $name): void
     {

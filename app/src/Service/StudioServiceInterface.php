@@ -33,8 +33,6 @@ interface StudioServiceInterface
      * Delete entity.
      *
      * @param Studio $studio
-     *
-     * @return void
      */
     public function delete(Studio $studio): void;
 

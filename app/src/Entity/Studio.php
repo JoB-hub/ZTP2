@@ -7,7 +7,6 @@ namespace App\Entity;
 
 use App\Repository\StudioRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -57,8 +56,6 @@ class Studio
      * Setter for name.
      *
      * @param string $name
-     *
-     * @return void
      */
     public function setName(string $name): void
     {
