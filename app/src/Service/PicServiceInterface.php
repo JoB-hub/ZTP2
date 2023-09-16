@@ -10,7 +10,7 @@ use App\Entity\Pic;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Class Pic service.
+ * Interface PicServiceInterface.
  */
 interface PicServiceInterface
 {

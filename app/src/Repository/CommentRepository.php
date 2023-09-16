@@ -12,6 +12,8 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class CommentRepository.
+ *
  * @extends ServiceEntityRepository<Comment>
  *
  * @method Comment|null find($id, $lockMode = null, $lockVersion = null)

@@ -11,6 +11,8 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class StudioRepository.
+ *
  * @extends ServiceEntityRepository<Studio>
  *
  * @method Studio|null find($id, $lockMode = null, $lockVersion = null)

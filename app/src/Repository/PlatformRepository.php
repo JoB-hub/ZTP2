@@ -11,6 +11,8 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class PlatformRepository.
+ *
  * @extends ServiceEntityRepository<Platform>
  *
  * @method Platform|null find($id, $lockMode = null, $lockVersion = null)

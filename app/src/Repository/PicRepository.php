@@ -10,6 +10,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Class PicRepository.
+ *
  * @extends ServiceEntityRepository<Pic>
  *
  * @method Pic|null find($id, $lockMode = null, $lockVersion = null)
