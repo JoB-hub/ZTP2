@@ -37,12 +37,14 @@
 <header>
     <h1>{{ 'label.ztp_project'|trans }}</h1>
     <nav>
-        <a href="{{ url('app_login') }}">
-            {{ 'action_login'|trans }}
-        </a>
-        <a href="{{ url('app_register') }}">
-            {{ 'action_register'|trans }}
-        </a>
+        {% if not is_granted('ROLE_ADMIN') and not is_granted('ROLE_USER')%}
+            <a href="{{ url('app_login') }}">
+                {{ 'action_login'|trans }}
+            </a>
+            <a href="{{ url('app_register') }}">
+                {{ 'action_register'|trans }}
+            </a>
+        {% endif %}
         <a href="{{ url('game_index') }}" title="{{ 'label.games'|trans }}">
             {{ 'label.games'|trans }}
         </a>

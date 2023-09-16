@@ -48,7 +48,7 @@
             <dt>{{ 'label.author'|trans }}</dt>
             <dd>{{  game.author.nickname }}</dd>
             <dt>{{ 'label.createdAt'|trans }}</dt>
-            <dd>{{ game.createdAt|date('Y/m/d') }}</dd>
+            <td>{{ game.createdAt|format_date('long') }}</td>
         </dl>
         <p>
             <a href="{{ url('game_index') }}" title="{{ 'action.back_to_list'|trans }}">
